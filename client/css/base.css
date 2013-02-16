@@ -19,10 +19,24 @@ body {
 }
 
 .no-margin {
-	margin: 0px;
+	margin: 0px !important;
 }
 
-#base-background {
+.no-padding {
+	padding: 0px !important;
+}
+
+table, form {
+	/* Remove Bootstrap bottom table and form padding */
+	margin-bottom: 0px !important;
+}
+
+table td {
+	/* Remove Bootstrap table row lines */
+    border-top: none !important;
+}
+
+#home-background {
 	height: 100%;
 	width: 100%;
 	display: table;
@@ -39,7 +53,20 @@ body {
 	vertical-align: middle;
 }
 
-.hero-unit {
+.navbar-inner {
+	border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	-webkit-border-radius: 0px !important;
+}
+
+.transparent-gray-background {
 	background-color: rgba(238, 238, 238, 0.8);
+}
+
+.large-padding {
 	padding: 30px;
+}
+
+.logout-pane {
+	padding: 7px 0px 5px;
 }
