@@ -1,0 +1,23 @@
+/*
+ * Digital Fortress Base CSS Declarations
+ * (high-level default styles)
+*/
+* {
+   margin:  0;
+   padding: 0;
+}
+
+html { 
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
+}
+
+.no-margin {
+	margin: 0px;
+}

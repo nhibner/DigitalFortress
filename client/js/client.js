@@ -1,10 +1,8 @@
-Template.hello.greeting = function () {
-	return "Welcome to Digital Fortress.";
-};
+///////////////////////////////////////////////////////////////////////////////
+// Accounts Configuration
 
-Template.hello.events({
-	'click input' : function () {
-		// template data, if any, is available in 'this'
-		alert("You pressed the button!");
-	}
+// Configure general Meteor Accounts settings
+Accounts.config({
+	sendVerificationEmail: false,
+	forbidClientAccountCreation: true
 });

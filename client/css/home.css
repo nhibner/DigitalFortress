@@ -1,0 +1,24 @@
+/*
+ * Digital Fortress CSS Styles
+*/
+#home-background {
+	height: 100%;
+	width: 100%;
+	display: table;
+	background: url('/../images/fortknox.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#home-bar-header {
+	display: table-cell;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.hero-unit {
+	background-color: rgba(238, 238, 238, 0.8);
+	padding: 30px;
+}
