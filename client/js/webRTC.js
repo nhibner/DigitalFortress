@@ -84,6 +84,5 @@ function blend()
 	var height = currCanvas.height;
 	var sourceData = currContext.getImageData(0, 0, width, height);
 	if(!lastImage) lastImage = currContext.getImageData(0, 0, width, height);
-	differenceAccuracy(sourceData.data, lastImage.data);
 	lastImage = sourceData;
 }
