@@ -17,3 +17,9 @@ Meteor.autorun(function () {
     Meteor.Router.to('/');
   }
 });
+
+Template.app.events({
+	'click #btn-start-recording': function() {
+		alert("Start Recording");
+	}
+});

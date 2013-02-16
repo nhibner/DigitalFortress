@@ -14,7 +14,6 @@ Meteor.Router.filters({
 
 	// Forces user to login before viewing page
 	'requireLogin': function(page) {
-
 		if (Meteor.user()) {
       		return page;
     	} else {
