@@ -42,11 +42,13 @@ function onSuccess(stream)
 	video.autoplay = true;
 	video.src = videoSource;
 
-	currCanvas = document.getElementById('currCanvas');
+	currCanvas = document.createElement('canvas');
+	currCanvas.width = 640;
+	currCanvas.height = 480;
 	currContext = currCanvas.getContext('2d');
 	resultCanvas = document.getElementById('resultCanvas');
 	resultContext = resultCanvas.getContext('2d');
-	timeLeft = 15;
+	timeLeft = 2;
 
 	setTimeout(countdown, 1000);
 }
@@ -58,14 +60,14 @@ function onError()
 
 function countdown()
 {
-	currCanvas.width = currCanvas.width;
+	resultCanvas.width = resultCanvas.width;
 	if(timeLeft <= 0)
 	{
 		update();
 	}
 	else
 	{
-		currContext.fillText("Detecting motion in " + timeLeft + " seconds.", 20, 20);
+		resultContext.fillText("Detecting motion in " + timeLeft + " seconds.", 20, 20);
 		timeLeft--;
 		setTimeout(countdown, 1000);
 	}
@@ -122,14 +124,7 @@ function blend()
 	resultContext.putImageData(blendedData, 0, 0);
 	if(movementDetected)
 	{
-		var data = currCanvas.toDataURL("image/png");
-		var base64data = data.replace(/^data:image\/(png|jpg);base64,/, "");
-		//sendImage(base64data);
+		saveImage(currCanvas.toDataURL("image/png"));
 	}
 	lastImage = sourceData;
-}
-
-function sendImage(data)
-{
-	alert("Sending image!");
 }
