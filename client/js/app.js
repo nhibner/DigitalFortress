@@ -15,8 +15,8 @@ Template.app.events({
 	},
 
 	'click #btn-stop-recording': function() {
-		Session.set('isRecording', false);
 		stopVideoStream(); 
+		Session.set('isRecording', false);
 	},
 
 	'click #btn-nav-record': function() {
