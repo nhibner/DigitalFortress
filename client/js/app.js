@@ -3,8 +3,21 @@
 ///////////////////////////////////////////////////////////////////////////////
 // App Template
 
+Template.app.isRecording = function() {
+	return Session.get('isRecording'); 
+}
+
 Template.app.events({
-	'click #btn-start-recording': function() { startVideoStream(); }
+
+	'click #btn-start-recording': function() {
+		Session.set('isRecording', true);
+		startVideoStream(); 
+	},
+
+	'click #btn-stop-recording': function() {
+		Session.set('isRecording', false);
+		//startVideoStream(); 
+	},
 });
 
 function saveImage(dataURL) {
