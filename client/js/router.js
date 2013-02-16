@@ -6,7 +6,8 @@
 // All routes for Digital Fortress
 Meteor.Router.add({
 	'/': 'home',
-	'/app': 'app'
+	'/app': 'app',
+	'/view': 'view'
 });
 
 // Specific filters for routes
@@ -23,4 +24,4 @@ Meteor.Router.filters({
 });
 
 // Always force login when attempting to access app template
-Meteor.Router.filter('requireLogin', {only: 'app'});
+Meteor.Router.filter('requireLogin', {only: ['app', 'view']});
