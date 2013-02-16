@@ -29,7 +29,6 @@ function saveImage(dataURL) {
 
 function sendEmail()
 {
-	alert("Helloooo email!");
 	var from = "h.m.alzeera@gmail.com";
 	var to = "h.m.alzeera@gmail.com";
 	var body = "You just got robbed!";
