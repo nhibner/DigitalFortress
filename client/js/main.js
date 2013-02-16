@@ -9,6 +9,13 @@ Accounts.config({
 	forbidClientAccountCreation: true
 });
 
+Accounts.ui.config({
+	requestPermissions: {
+	    google: ['https://www.googleapis.com/auth/userinfo.profile',
+	    		 'https://www.googleapis.com/auth/userinfo.email']
+	}
+});
+
 // Control login flow
 Meteor.autorun(function () {
   if (Meteor.userId()) {
@@ -19,3 +26,6 @@ Meteor.autorun(function () {
     Meteor.Router.to('/');
   }
 });
+
+// Subscribe to "users" collection
+Meteor.subscribe("users");
