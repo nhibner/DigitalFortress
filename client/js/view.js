@@ -1,3 +1,7 @@
+Template.view.captures = function() {
+	return Meteor.user().profile.captures;
+}
+
 Template.view.events({
 
 	'click #btn-nav-record': function() {
