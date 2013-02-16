@@ -11,7 +11,8 @@
 
 	<video id="cam" width="640" height="480"></video>
 	<canvas id="currCanvas" width="640" height="480"></canvas>
-	<canvas id="resutCanvas" width="640" height="480"></canvas>
+	<canvas id="resultCanvas" width="640" height="480"></canvas>
+	<textarea id="result_data" style="width:500px;height:200px"></textarea>
 
 	<div id="btn-start-recording" class="btn btn-danger">Start Recording</div>
 

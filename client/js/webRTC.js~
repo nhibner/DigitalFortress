@@ -4,7 +4,8 @@ var currCanvas;
 var resultCanvas;
 var currContext;
 var resultContext;
-
+var movementDetected;
+var timeLeft;
 
 function startVideoStream()
 {
@@ -16,7 +17,7 @@ function startVideoStream()
 	{
 	    navigator.getUserMedia({
 	      video: true, 
-	      audio: true
+	      audio: false
 	    }, onSuccess, onError);
 	} else 
 	{
@@ -45,13 +46,29 @@ function onSuccess(stream)
 	currContext = currCanvas.getContext('2d');
 	resultCanvas = document.getElementById('resultCanvas');
 	resultContext = resultCanvas.getContext('2d');
-	
-	setTimeout(update, 30000);
+	timeLeft = 15;
+
+	setTimeout(countdown, 1000);
 }
  
 function onError() 
 {
     alert('There has been a problem retrieving the streams - did you allow access?');
+}
+
+function countdown()
+{
+	currCanvas.width = currCanvas.width;
+	if(timeLeft <= 0)
+	{
+		update();
+	}
+	else
+	{
+		currContext.fillText("Detecting motion in " + timeLeft + " seconds.", 20, 20);
+		timeLeft--;
+		setTimeout(countdown, 1000);
+	}
 }
 
 function update() 
@@ -68,6 +85,7 @@ function fastAbs(value)
 
 function differenceAccuracy(result, data1, data2) 
 {
+	movementDetected = false;
 	if (data1.length != data2.length) return null;
 	var i = 0;
 	while (i < (data1.length * 0.25)) 
@@ -75,6 +93,10 @@ function differenceAccuracy(result, data1, data2)
 		var average1 = (data1[4*i] + data1[4*i+1] + data1[4*i+2]) / 3;
 		var average2 = (data2[4*i] + data2[4*i+1] + data2[4*i+2]) / 3;
 		var diff = threshold(fastAbs(average1 - average2));
+		if(diff != 0 && !movementDetected)
+		{
+			movementDetected = true;
+		}
 		result[4*i] = diff;
 		result[4*i+1] = diff;
 		result[4*i+2] = diff;
@@ -98,5 +120,16 @@ function blend()
 
 	differenceAccuracy(blendedData.data, sourceData.data, lastImage.data);
 	resultContext.putImageData(blendedData, 0, 0);
+	if(movementDetected)
+	{
+		var data = currCanvas.toDataURL("image/png");
+		var base64data = data.replace(/^data:image\/(png|jpg);base64,/, "");
+		sendImage(base64data);
+	}
 	lastImage = sourceData;
+}
+
+function sendImage(data)
+{
+	alert("Sending image!");
 }
