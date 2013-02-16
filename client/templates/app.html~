@@ -1,0 +1,17 @@
+<template name="app">
+	
+	<video id="cam" width="640" height="480"></video>
+	<canvas id="currCanvas" width="640" height="480"></canvas>
+
+	<div class="navbar">
+  		<div class="navbar-inner">
+    		<a class="brand" href="#">Digital Fortress</a>
+    		<div class="nav pull-right logout-pane">
+				{{loginButtons}}  
+			</div>
+  		</div>
+	</div>
+
+	<div id="btn-start-recording" class="btn btn-danger">Start Recording</div>
+
+</template>
