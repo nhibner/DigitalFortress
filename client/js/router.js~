@@ -24,4 +24,4 @@ Meteor.Router.filters({
 });
 
 // Always force login when attempting to access app template
-Meteor.Router.filter('requireLogin', {only: 'app'});
+Meteor.Router.filter('requireLogin', {only: 'hello'});
