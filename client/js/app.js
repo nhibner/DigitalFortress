@@ -18,13 +18,21 @@ Template.app.events({
 		Session.set('isRecording', false);
 		stopVideoStream(); 
 	},
+
+
 });
 
 function saveImage(dataURL) {
 	var blob = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 	var filename = genFileName();
 	var filepath = genFilePath();
-	Meteor.call('saveFile', blob, filename, filepath, "base64");
+	Meteor.call('saveImage', blob, filename, filepath, "base64");
+
+	var capture = {
+		filename: filename,
+		time: new Date().getTime()
+	};
+	Meteor.call('addCapture', capture);
 }
 
 function sendEmail()

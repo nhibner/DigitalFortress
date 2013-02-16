@@ -1,0 +1,22 @@
+<template name="view">
+
+	<div class="navbar">
+  		<div class="navbar-inner">
+    		<a class="brand" href="#">Digital Fortress</a>
+    		<ul class="nav">
+    			<li><a href="#">Record</a></li>
+      			<li class="active"><a href="#">View</a></li>
+      		</ul>
+    		<div class="nav pull-right logout-pane">
+				{{loginButtons}}  
+			</div>
+  		</div>
+	</div>
+
+	<div id="captures">
+		{{#each captures}}
+			<img src="../../captures/{{filename}}" />
+		{{/each}}
+	</div>
+
+</template>

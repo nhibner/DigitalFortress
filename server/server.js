@@ -54,5 +54,10 @@ Meteor.methods({
 	    function cleanName(str) {
 	      	return str.replace(/\.\./g,'').replace(/\//g,'');
 	    }
-	  }
+	},
+
+	addCapture: function(capture) {
+		Meteor.users.update({_id: this.userId},
+			{$addToSet: {"profile.captures": capture}});
+	}
 });
