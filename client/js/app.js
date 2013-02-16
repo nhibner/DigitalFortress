@@ -43,8 +43,8 @@ function saveImage(dataURL) {
 
 function sendEmail()
 {
-	var from = "h.m.alzeera@gmail.com";
-	var to = "h.m.alzeera@gmail.com";
+	var from = Meteor.user().services.google.email;
+	var to = Meteor.user().services.google.email;
 	var body = "You just got robbed!";
 
 	Meteor.call('sendEmail', to, from, '', body);
