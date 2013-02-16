@@ -152,14 +152,13 @@ function blend()
 	{
 		if(saveEnabled)
 		{
-			saveImage(currCanvas.toDataURL("image/png"));
+			saveImage(currCanvas.toDataURL("image/png"), emailEnabled);
 			saveEnabled = false;
 			setTimeout(enableSave, 1000);
 		}
 		
 		if(emailEnabled)
 		{
-			sendEmail();
 			emailEnabled = false;
 			setTimeout(enableEmail, 30000);
 		}
