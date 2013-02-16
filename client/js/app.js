@@ -11,7 +11,9 @@ Template.app.events({
 function saveImage(dataURL) {
 	var blob = getBlob(); // UNTIL PASSED ACTUAL DATAURL
 	//var blob = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-	Meteor.call('saveFile', blob, genFilePath(), "", "base64");
+	var filename = genFileName();
+	var filepath = genFilePath();
+	Meteor.call('saveFile', blob, filename, filepath, "base64");
 }
 
 // TEST FUNCTION
@@ -36,6 +38,17 @@ function getBlob() {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
+function genFilePath() {
+	// var result = Meteor.user().services.google.id + '';
+	// return result;
+	return 'captures';
+}
+
+function genFileName() {
+	var result = randomString(40) + '.png';
+	return result;
+}
+
 function randomString(length) {
     var result = '';
     var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -43,8 +56,4 @@ function randomString(length) {
     	result += chars[Math.round(Math.random() * (chars.length - 1))];
     }
     return result;
-}
-
-function genFilePath() {
-	var result = Meteor.users().services.google.id + '/' randomString(40) + '.png';
 }

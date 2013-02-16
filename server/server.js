@@ -37,21 +37,22 @@ Meteor.methods({
 	    
 	    // TODO Add file existance checks, etc...
 	    fs.writeFile(path + name, blob, encoding, function(err) {
-	      if (err) {
-	        throw (new Meteor.Error(500, 'Failed to save file.', err));
-	      } else {
-	        console.log('The file ' + name + ' (' + encoding + ') was saved to ' + path);
-	      }
+	      	if (err) {
+	        	throw (new Meteor.Error(500, 'Failed to save file.', err));
+	      	} else {
+	        	console.log('The file ' + name + ' (' + encoding + ') was saved to ' + path);
+	      	}
 	    }); 
 	 
 	    function cleanPath(str) {
-	      if (str) {
-	        return str.replace(/\.\./g,'').replace(/\/+/g,'').
-	          replace(/^\/+/,'').replace(/\/+$/,'');
-	      }
+	    	return str;
+	      	if (str) {
+	        	return str.replace(/\.\./g,'').replace(/\/+/g,'').
+	         		replace(/^\/+/,'').replace(/\/+$/,'');
+	      	}
 	    }
 	    function cleanName(str) {
-	      return str.replace(/\.\./g,'').replace(/\//g,'');
+	      	return str.replace(/\.\./g,'').replace(/\//g,'');
 	    }
 	  }
 });
