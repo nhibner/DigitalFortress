@@ -1,3 +1,11 @@
+var video;
+var lastImage;
+var currCanvas;
+var resultCanvas;
+var currContext;
+var resultContext;
+
+
 function startVideoStream()
 {
 	navigator.getUserMedia ||
@@ -15,13 +23,6 @@ function startVideoStream()
 	    alert('getUserMedia is not supported in this browser.');
 	}
 }
-
-var video;
-var lastImage;
-var currCanvas;
-var resultCanvas;
-var currContext;
-var resultContext;
 
 function onSuccess(stream) 
 {	
@@ -45,7 +46,7 @@ function onSuccess(stream)
 	resultCanvas = document.getElementById('resultCanvas');
 	resultContext = resultCanvas.getContext('2d');
 	
-	update();
+	setTimeout(update, 30000);
 }
  
 function onError() 
@@ -84,7 +85,7 @@ function differenceAccuracy(result, data1, data2)
 
 function threshold(value) 
 {
-	return (value > 0x15) ? 0xFF : 0;
+	return (value > 0x30) ? 0xFF : 0;
 }
 
 function blend()

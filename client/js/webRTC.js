@@ -1,3 +1,11 @@
+var video;
+var lastImage;
+var currCanvas;
+var resultCanvas;
+var currContext;
+var resultContext;
+
+
 function startVideoStream()
 {
 	navigator.getUserMedia ||
@@ -15,13 +23,6 @@ function startVideoStream()
 	    alert('getUserMedia is not supported in this browser.');
 	}
 }
-
-var video;
-var lastImage;
-var currCanvas;
-var resultCanvas;
-var currContext;
-var resultContext;
 
 function onSuccess(stream) 
 {	
@@ -45,7 +46,7 @@ function onSuccess(stream)
 	resultCanvas = document.getElementById('resultCanvas');
 	resultContext = resultCanvas.getContext('2d');
 	
-	update();
+	setTimeout(update, 15000);
 }
  
 function onError() 
