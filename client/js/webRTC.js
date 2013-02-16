@@ -19,14 +19,14 @@ function startVideoStream()
 	    navigator.getUserMedia({
 	      video: true, 
 	      audio: false
-	    }, onSuccess, onError);
+	    }, onStartSuccess, onStartError);
 	} else 
 	{
 	    alert('getUserMedia is not supported in this browser.');
 	}
 }
 
-function onSuccess(stream) 
+function onStartSuccess(stream) 
 {	
     video = document.getElementById('cam');
 	var videoSource;
@@ -55,9 +55,31 @@ function onSuccess(stream)
 	setTimeout(countdown, 1000);
 }
  
-function onError() 
+function onStartError() 
 {
     alert('There has been a problem retrieving the streams - did you allow access?');
+}
+
+function StopVideoFeed()
+{
+	if (navigator.getUserMedia) 
+	{
+	    navigator.getUserMedia({
+	      video: false, 
+	      audio: false
+	    }, onStopSuccess, onStopError);
+	} 
+}
+
+function onStopSuccess()
+{
+	video.src = "";
+	video.autoplay = false;
+}
+
+function onStopError()
+{
+	alert('Something went horribly wrong!');
 }
 
 function countdown()
@@ -111,7 +133,7 @@ function differenceAccuracy(result, data1, data2)
 
 function threshold(value) 
 {
-	return (value > 0x30) ? 0xFF : 0;
+	return (value > 0x50) ? 0xFF : 0;
 }
 
 function blend()
