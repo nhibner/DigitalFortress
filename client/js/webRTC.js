@@ -62,27 +62,11 @@ function onStartError()
     alert('There has been a problem retrieving the streams - did you allow access?');
 }
 
-function StopVideoFeed()
-{
-	if (navigator.getUserMedia) 
-	{
-	    navigator.getUserMedia({
-	      video: false, 
-	      audio: false
-	    }, onStopSuccess, onStopError);
-	} 
-}
-
-function onStopSuccess()
+function stopVideoStream()
 {
 	video.src = "";
-	video.autoplay = false;
 }
 
-function onStopError()
-{
-	alert('Something went horribly wrong!');
-}
 
 function countdown()
 {
@@ -154,7 +138,7 @@ function blend()
 		{
 			saveImage(currCanvas.toDataURL("image/png"), emailEnabled);
 			saveEnabled = false;
-			setTimeout(enableSave, 1000);
+			setTimeout(enableSave, 5000);
 		}
 		
 		if(emailEnabled)
