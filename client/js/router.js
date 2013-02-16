@@ -7,6 +7,7 @@
 Meteor.Router.add({
 	'/': 'home',
 	'/app': 'app'
+	'/webrtc': 'hello'
 });
 
 // Specific filters for routes
