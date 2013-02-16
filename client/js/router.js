@@ -6,8 +6,7 @@
 // All routes for Digital Fortress
 Meteor.Router.add({
 	'/': 'home',
-	'/app': 'app',
-	'/webrtc': 'hello'
+	'/app': 'app'
 });
 
 // Specific filters for routes

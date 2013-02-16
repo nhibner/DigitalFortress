@@ -7,6 +7,7 @@ var resultContext;
 var movementDetected;
 var timeLeft;
 var saveEnabled;
+var emailEnabled;
 
 function startVideoStream()
 {
@@ -51,6 +52,7 @@ function onStartSuccess(stream)
 	resultContext = resultCanvas.getContext('2d');
 	timeLeft = 2;
 	saveEnabled = true;
+	emailEnabled = true;
 
 	setTimeout(countdown, 1000);
 }
@@ -146,11 +148,21 @@ function blend()
 
 	differenceAccuracy(blendedData.data, sourceData.data, lastImage.data);
 	resultContext.putImageData(blendedData, 0, 0);
-	if(movementDetected && saveEnabled)
+	if(movementDetected)
 	{
-		saveImage(currCanvas.toDataURL("image/png"));
-		saveEnabled = false;
-		setTimeout(enableSave, 1000);
+		if(saveEnabled)
+		{
+			saveImage(currCanvas.toDataURL("image/png"));
+			saveEnabled = false;
+			setTimeout(enableSave, 1000);
+		}
+		
+		if(emailEnabled)
+		{
+			sendEmail();
+			emailEnabled = false;
+			setTimeout(enableEmail, 30000);
+		}
 	}
 	lastImage = sourceData;
 }
@@ -158,4 +170,9 @@ function blend()
 function enableSave()
 {
 	saveEnabled = true;
+}
+
+function enableEmail()
+{
+	emailEnabled = true;
 }

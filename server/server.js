@@ -23,7 +23,7 @@ Meteor.methods({
   	},
 
   	// Function to save an image file
-  	saveFile: function(blob, name, path, encoding) {
+  	saveImage: function(blob, name, path, encoding) {
 	    var path = cleanPath(path),
 	    	  fs = __meteor_bootstrap__.require('fs'),
 	        name = cleanName(name || 'file'),

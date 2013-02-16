@@ -27,6 +27,16 @@ function saveImage(dataURL) {
 	Meteor.call('saveFile', blob, filename, filepath, "base64");
 }
 
+function sendEmail()
+{
+	alert("Helloooo email!");
+	var from = "h.m.alzeera@gmail.com";
+	var to = "h.m.alzeera@gmail.com";
+	var body = "You just got robbed!";
+
+	Meteor.call('sendEmail', to, from, '', body);
+}
+
 function genFilePath() {
 	// var result = Meteor.user().services.google.id + '';
 	result = 'captures';
