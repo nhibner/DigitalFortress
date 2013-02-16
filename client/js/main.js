@@ -1,3 +1,5 @@
+// Digital Fortress -- main
+
 ///////////////////////////////////////////////////////////////////////////////
 // Accounts Configuration
 
@@ -16,10 +18,4 @@ Meteor.autorun(function () {
     // on logout
     Meteor.Router.to('/');
   }
-});
-
-Template.app.events({
-	'click #btn-start-recording': function() {
-		alert("Start Recording");
-	}
 });
