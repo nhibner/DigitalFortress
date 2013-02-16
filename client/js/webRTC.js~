@@ -19,7 +19,9 @@ function startVideoStream()
 var video;
 var lastImage;
 var currCanvas;
+var resultCanvas;
 var currContext;
+var resultContext;
 
 function onSuccess(stream) 
 {	
@@ -40,6 +42,8 @@ function onSuccess(stream)
 
 	currCanvas = document.getElementById('currCanvas');
 	currContext = currCanvas.getContext('2d');
+	resultCanvas = document.getElementById('resultCanvas');
+	resultContext = resultCanvas.getContext('2d');
 	
 	update();
 }
@@ -61,7 +65,7 @@ function fastAbs(value)
 	return (value ^ (value >> 31)) - (value >> 31);
 }
 
-function differenceAccuracy(data1, data2) 
+function differenceAccuracy(result, data1, data2) 
 {
 	if (data1.length != data2.length) return null;
 	var i = 0;
@@ -70,6 +74,11 @@ function differenceAccuracy(data1, data2)
 		var average1 = (data1[4*i] + data1[4*i+1] + data1[4*i+2]) / 3;
 		var average2 = (data2[4*i] + data2[4*i+1] + data2[4*i+2]) / 3;
 		var diff = threshold(fastAbs(average1 - average2));
+		result[4*i] = diff;
+		result[4*i+1] = diff;
+		result[4*i+2] = diff;
+		result[4*i+3] = 0xFF;
+		i++;
 	}
 }
 
@@ -83,7 +92,10 @@ function blend()
 	var width = currCanvas.width;
 	var height = currCanvas.height;
 	var sourceData = currContext.getImageData(0, 0, width, height);
+	var blendedData = currContext.createImageData(width, height);
 	if(!lastImage) lastImage = currContext.getImageData(0, 0, width, height);
-	differenceAccuracy(sourceData.data, lastImage.data);
+
+	differenceAccuracy(blendedData.data, sourceData.data, lastImage.data);
+	resultContext.putImageData(blendedData, 0, 0);
 	lastImage = sourceData;
 }

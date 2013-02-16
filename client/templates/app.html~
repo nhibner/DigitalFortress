@@ -11,8 +11,7 @@
 
 	<video id="cam" width="640" height="480"></video>
 	<canvas id="currCanvas" width="640" height="480"></canvas>
-	<script src="js/webRTC.js"></script>
-	<script src="js/app.js"></script>
+	<canvas id="resutCanvas" width="640" height="480"></canvas>
 
 	<div id="btn-start-recording" class="btn btn-danger">Start Recording</div>
 
