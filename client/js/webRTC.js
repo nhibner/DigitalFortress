@@ -138,7 +138,7 @@ function blend()
 		{
 			saveImage(currCanvas.toDataURL("image/png"), emailEnabled);
 			saveEnabled = false;
-			setTimeout(enableSave, 5000);
+			setTimeout(enableSave, 1000);
 		}
 		
 		if(emailEnabled)
