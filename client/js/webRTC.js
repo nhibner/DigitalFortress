@@ -51,8 +51,14 @@ function onError()
 
 function update() 
 {
-	currContext.drawImage(video, 0, 0, video.width, video.height); 
+	currContext.drawImage(video, 0, 0, video.width, video.height);
+	blend();
 	timeOut = setTimeout(update, 1000/60);
+}
+
+function fastAbs(value)
+{
+	return (value ^ (value >> 31)) - (value >> 31);
 }
 
 function differenceAccuracy(data1, data2) 
@@ -63,12 +69,7 @@ function differenceAccuracy(data1, data2)
 	{
 		var average1 = (data1[4*i] + data1[4*i+1] + data1[4*i+2]) / 3;
 		var average2 = (data2[4*i] + data2[4*i+1] + data2[4*i+2]) / 3;
-		var diff = threshold(Math.abs(average1 - average2));
-		if(diff != 0)
-		{
-			alert("INTRUDER!");
-			return;
-		}
+		var diff = threshold(fastAbs(average1 - average2));
 	}
 }
 

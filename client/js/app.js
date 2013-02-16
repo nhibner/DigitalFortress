@@ -4,5 +4,5 @@
 // App Template
 
 Template.app.events({
-	'click #btn-start-recording': startVideoStream()
+	'click #btn-start-recording': function() { startVideoStream(); }
 });

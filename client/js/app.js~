@@ -5,5 +5,4 @@
 
 Template.app.events({
 	'click #btn-start-recording': startVideoStream()
-	}
 });
