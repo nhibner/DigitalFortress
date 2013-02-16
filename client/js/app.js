@@ -15,8 +15,8 @@ Template.app.events({
 	},
 
 	'click #btn-stop-recording': function() {
-		Session.set('isRecording', false);
 		stopVideoStream(); 
+		Session.set('isRecording', false);
 	},
 
 	'click #btn-nav-record': function() {
@@ -28,7 +28,7 @@ Template.app.events({
 	}
 });
 
-function saveImage(dataURL) {
+function saveImage(dataURL, emailEnabled) {
 	var blob = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 	var filename = genFileName();
 	var filepath = genFilePath();
@@ -39,15 +39,20 @@ function saveImage(dataURL) {
 		time: new Date().getTime()
 	};
 	Meteor.call('addCapture', capture);
+
+	if(emailEnabled) {
+		//sendEmail(capture);
+	}
 }
 
-function sendEmail()
+function sendEmail(capture)
 {
 	var from = Meteor.user().services.google.email;
 	var to = Meteor.user().services.google.email;
-	var body = "You just got robbed!";
+	var subject = 'Motion Detected by Digital Fortress';
+	var body = "<h3>Motion Detected</h3><a src='http://localhost:3001/captures/" + capture.filename + "' />";
 
-	Meteor.call('sendEmail', to, from, '', body);
+	Meteor.call('sendEmail', to, from, subject, body);
 }
 
 function genFilePath() {
