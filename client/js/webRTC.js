@@ -6,6 +6,7 @@ var currContext;
 var resultContext;
 var movementDetected;
 var timeLeft;
+var saveEnabled;
 
 function startVideoStream()
 {
@@ -49,6 +50,7 @@ function onSuccess(stream)
 	resultCanvas = document.getElementById('resultCanvas');
 	resultContext = resultCanvas.getContext('2d');
 	timeLeft = 2;
+	saveEnabled = true;
 
 	setTimeout(countdown, 1000);
 }
@@ -122,9 +124,16 @@ function blend()
 
 	differenceAccuracy(blendedData.data, sourceData.data, lastImage.data);
 	resultContext.putImageData(blendedData, 0, 0);
-	if(movementDetected)
+	if(movementDetected && saveEnabled)
 	{
 		saveImage(currCanvas.toDataURL("image/png"));
+		saveEnabled = false;
+		setTimeout(enableSave, 1000);
 	}
 	lastImage = sourceData;
+}
+
+function enableSave()
+{
+	saveEnabled = true;
 }
