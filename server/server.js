@@ -56,6 +56,7 @@ Meteor.methods({
 	    }
 	},
 
+	// Function to add a capture for a user
 	addCapture: function(capture) {
 		Meteor.users.update({_id: this.userId},
 			{$addToSet: {"profile.captures": capture}});

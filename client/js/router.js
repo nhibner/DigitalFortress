@@ -13,9 +13,9 @@ Meteor.Router.add({
 // Specific filters for routes
 Meteor.Router.filters({
 
-	// Forces user to login before viewing page
+	// Forces user to login before viewing a page other than home
 	'requireLogin': function(page) {
-		if (Meteor.user()) {
+		if(Meteor.user()) {
       		return page;
     	} else {
       		return 'home';
