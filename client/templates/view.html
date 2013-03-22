@@ -1,17 +1,6 @@
 <template name="view">
 
-	<div class="navbar">
-  		<div class="navbar-inner">
-    		<a class="brand" href="#">Digital Fortress</a>
-    		<ul class="nav">
-    			<li id="btn-nav-record"><a href="">Record</a></li>
-      			<li id="btn-nav-view" class="active"><a href="">View</a></li>
-      		</ul>
-    		<div class="nav pull-right logout-pane">
-				{{loginButtons}}  
-			</div>
-  		</div>
-	</div>
+	{{> navbar}}
 
 	<div id="captures">
 		{{#each captures}}

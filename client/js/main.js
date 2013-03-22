@@ -4,11 +4,12 @@
 // Accounts Configuration
 
 // Configure general Meteor Accounts settings
-Accounts.config({
-	sendVerificationEmail: false,
-	forbidClientAccountCreation: true
-});
+// Accounts.config({
+// 	sendVerificationEmail: true,
+// 	forbidClientAccountCreation: false
+// });
 
+// Configure account permissions
 Accounts.ui.config({
 	requestPermissions: {
 	    google: ['https://www.googleapis.com/auth/userinfo.profile',

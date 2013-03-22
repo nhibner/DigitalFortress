@@ -1,11 +1,18 @@
 // Digital Fortress -- app
 
 ///////////////////////////////////////////////////////////////////////////////
-// App Template
+// App Template - Helpers
 
-Template.app.isRecording = function() {
-	return Session.get('isRecording'); 
-}
+Template.app.helpers({
+
+	isRecording: function() {
+		return Session.get('isRecording');
+	}
+
+});
+
+///////////////////////////////////////////////////////////////////////////////
+// App Template - Events
 
 Template.app.events({
 
@@ -27,6 +34,9 @@ Template.app.events({
 		Meteor.Router.to('/view');
 	}
 });
+
+///////////////////////////////////////////////////////////////////////////////
+// TODO - EXTRACT BELOW FUNCTIONS INTO OWN CLASS
 
 function saveImage(dataURL, emailEnabled) {
 	var blob = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
@@ -57,7 +67,7 @@ function sendEmail(capture)
 
 function genFilePath() {
 	// var result = Meteor.user().services.google.id + '';
-	result = 'captures';
+	var result = 'captures';
 	return result;
 }
 

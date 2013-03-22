@@ -1,17 +1,6 @@
 <template name="app">
 
-	<div class="navbar">
-  		<div class="navbar-inner">
-    		<a class="brand" href="#">Digital Fortress</a>
-    		<ul class="nav">
-    			<li id="btn-nav-record" class="active"><a href="">Record</a></li>
-      			<li id="btn-nav-view"><a href="">View</a></li>
-      		</ul>
-    		<div class="nav pull-right logout-pane">
-				{{loginButtons}}  
-			</div>
-  		</div>
-	</div>
+	{{> navbar}}
 
 	{{#if isRecording}}
 		<video id="cam" width="640" height="480"></video>

@@ -1,0 +1,17 @@
+<template name="navbar">
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">{{appName}}</a>
+            <ul class="nav">
+                {{#each navbarTabs}}
+                <li class="btn-nav {{isActive}}"><a href="">{{DISPLAY}}</a></li>
+                {{/each}}
+            </ul>
+            <div class="nav pull-right logout-pane">
+                {{loginButtons}}
+            </div>
+        </div>
+    </div>
+
+</template>

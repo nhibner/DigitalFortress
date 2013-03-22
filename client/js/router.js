@@ -6,8 +6,15 @@
 // All routes for Digital Fortress
 Meteor.Router.add({
 	'/': 'home',
-	'/app': 'app',
-	'/view': 'view'
+	'/home': 'home',
+	'/:tab': function(tab) {
+		var names = _.pluck(NavbarTabs, 'NAME');
+		if(_.contains(names, tab)) {
+			return tab;
+		} else {
+			return 'home';
+		}
+	}
 });
 
 // Specific filters for routes
@@ -23,5 +30,7 @@ Meteor.Router.filters({
 	}
 });
 
-// Always force login when attempting to access app template
-Meteor.Router.filter('requireLogin', {only: ['app', 'view']});
+// Always force login when attempting to access any navbar tab (in app template)
+Meteor.Router.filter('requireLogin', {only: function() {
+	return _.pluck(NavbarTabs, 'NAME');
+}})

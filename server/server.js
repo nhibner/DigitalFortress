@@ -1,3 +1,31 @@
+// Digital Fortress -- server
+
+///////////////////////////////////////////////////////////////////////////////
+// Server Lifecycle and Routing
+
+Meteor.startup(function() {
+
+	// Tell Meteor to not auto-reload when files change in "static" directory
+	connect = __meteor_bootstrap__.require('connect')
+	app = __meteor_bootstrap__.app
+	app.use(connect.static('static'));
+	app.use(connect.static('static/captures'));
+
+	// Add server-side routes
+	Meteor.Router.add({
+		'/captures/:hash.png': function(hash) {
+			var res = this.response;
+			var fs = __meteor_bootstrap__.require('fs');
+			var img = fs.readFileSync('static/captures/' + hash + '.png');
+			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.end(img, 'binary');
+		}
+	})
+});
+
+///////////////////////////////////////////////////////////////////////////////
+// Published Data
+
 // Allow the client access to their Google login data
 // Needed for Google integration
 Meteor.publish("users", function () {
@@ -5,7 +33,9 @@ Meteor.publish("users", function () {
   		{fields: {'services': 1, 'profile': 1}});
 });
 
-// Server-side methods
+///////////////////////////////////////////////////////////////////////////////
+// Server-side Methods
+
 Meteor.methods({
 
 	// Simple function to send an email
@@ -28,7 +58,7 @@ Meteor.methods({
 	    	  fs = __meteor_bootstrap__.require('fs'),
 	        name = cleanName(name || 'file'),
 	    encoding = encoding || 'binary',
-	      chroot = Meteor.chroot || 'public';
+	      chroot = Meteor.chroot || 'static';
 
 	    // Clean up the path. Remove any initial and final '/' -we prefix them-,
 	    // any sort of attempt to go to the parent directory '..' and any empty directories in
