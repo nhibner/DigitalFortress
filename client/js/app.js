@@ -24,7 +24,7 @@ Accounts.ui.config({
 Meteor.autorun(function () {
   if (Meteor.userId()) {
     // on login
-    Meteor.Router.to('/' + NavbarTabs[0].ROUTE);
+    Meteor.Router.to('/record');
   } else {
     // on logout
     Meteor.Router.to('/');
