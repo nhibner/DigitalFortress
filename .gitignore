@@ -1,4 +1,14 @@
+# Project Specific Files
 
-public/.DS_Store
+static/*
 
-server/.DS_Store
+
+# Mac OSX Files
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
