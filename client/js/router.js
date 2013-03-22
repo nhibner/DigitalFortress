@@ -5,11 +5,14 @@
 
 // All routes for Digital Fortress
 Meteor.Router.add({
+
 	'/': 'home',
+
 	'/home': 'home',
+	
 	'/:tab': function(tab) {
-		var names = _.pluck(NavbarTabs, 'NAME');
-		if(_.contains(names, tab)) {
+		var routes = _.pluck(NavbarTabs, 'ROUTE');
+		if(_.contains(routes, tab)) {
 			return tab;
 		} else {
 			return 'home';
@@ -32,5 +35,5 @@ Meteor.Router.filters({
 
 // Always force login when attempting to access any navbar tab (in app template)
 Meteor.Router.filter('requireLogin', {only: function() {
-	return _.pluck(NavbarTabs, 'NAME');
+	return _.pluck(NavbarTabs, 'ROUTE');
 }})

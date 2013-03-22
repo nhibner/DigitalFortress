@@ -6,15 +6,15 @@
 // Pages in navigation bar in the app
 var NavbarTabs = [
 	{
-		NAME: 'app',
+		ROUTE: 'record',
 		DISPLAY: 'Record'
 	},
 	{
-		NAME: 'view',
+		ROUTE: 'view',
 		DISPLAY: 'View'
 	},
 	{
-		NAME: 'help',
+		ROUTE: 'help',
 		DISPLAY: 'Help'
 	}
 ];
@@ -31,7 +31,7 @@ Template.navbar.helpers({
 	navbarTabs: function() {
 		var tabs = NavbarTabs;
 		_.each(tabs, function(tab) {
-			if(tab.NAME == Meteor.Router.page()) {
+			if(tab.ROUTE == Meteor.Router.page()) {
 				tab.isActive = 'active';
 			} else {
 				tab.isActive = '';
@@ -39,7 +39,6 @@ Template.navbar.helpers({
 		})
 		return tabs;
 	}
-
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,8 +52,7 @@ Template.navbar.events({
 			return tab.DISPLAY == display;
 		});
 		if(tab) {
-			Meteor.Router.to('/' + tab.NAME);
+			Meteor.Router.to('/' + tab.ROUTE);
 		}
 	}
-
 });

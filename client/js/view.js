@@ -3,9 +3,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // View Template - Helpers
 
-Template.view.captures = function() {
-	return Meteor.user().profile.captures;
-}
+Template.view.helpers({
+
+	captures: function() {
+		return Meteor.user().profile.captures;
+	}
+});
 
 ///////////////////////////////////////////////////////////////////////////////
 // View Template - Events
@@ -13,5 +16,4 @@ Template.view.captures = function() {
 Template.view.events({
 
 	// Nothing yet
-	
 });

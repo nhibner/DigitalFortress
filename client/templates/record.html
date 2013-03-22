@@ -1,0 +1,13 @@
+<template name="record">
+
+	{{> navbar}}
+
+	{{#if isRecording}}
+		<video id="cam" width="640" height="480"></video>
+		<canvas id="resultCanvas" width="640" height="480"></canvas>
+		<div id="btn-stop-recording" class="btn btn-danger">Stop Recording</div>
+	{{else}}
+		<div id="btn-start-recording" class="btn btn-danger">Start Recording</div>
+	{{/if}}
+
+</template>
