@@ -1,10 +1,12 @@
 ###
-	BLAH
+	Class for managing the Digital Fortress video stream (via WebRTC)
 ###
 
 class DFStreamer
 
-	### Class Variables (all private) ###
+	######################################################################
+
+	### Class Variables ###
 
 	this.saveEnabled = false
 	this.emailEnabled = false
@@ -18,12 +20,10 @@ class DFStreamer
 	this.currContext = null
 	this.resultContext = null
 
+	######################################################################
 
 	### Public Methods ###
 
-	###
-
-	###
 	this.startVideoStream = ->
 		# Get the UserMedia object if available
 		if not navigator.getUserMedia
@@ -40,30 +40,19 @@ class DFStreamer
 		else
 			alert 'getUserMedia is not supported in this browser.'
 
-	###
-
-	###
 	this.stopVideoStream = ->
 		this.video.src = ''
 
-	###
-
-	###
 	this.enableSave = ->
 		this.saveEnabled = true
 
-	###
-
-	###
 	this.enableEmail = ->
 		this.emailEnabled = true
 
+	######################################################################
 
 	### Private Methods ###
 	
-	###
-
-	###
 	onStartSuccess = (stream) ->
 		this.video = document.getElementById 'cam'
 		videoSource = null
@@ -90,9 +79,6 @@ class DFStreamer
 
 		setTimeout countdown, 1000
 
-	###
-
-	###
 	onStartError = ->
 		alert 'There has been a problem retrieving the streams ' +
 		      '- did you allow access?'
