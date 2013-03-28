@@ -17,11 +17,11 @@ Template.record.events({
 
 	'click #btn-start-recording': function() {
 		Session.set('isRecording', true);
-		DFStreamer.startVideoStream(); 
+		DF.startSession();
 	},
 
 	'click #btn-stop-recording': function() {
-		DFStreamer.stopVideoStream(); 
+		DF.endSession();
 		Session.set('isRecording', false);
 	}
 });

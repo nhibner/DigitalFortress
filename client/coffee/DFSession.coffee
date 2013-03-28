@@ -1,23 +1,28 @@
 ###
 	Class representing a recording session in Digital Fortress
+
+	Note: This class manages all data sources for a session
+	(i.e. video, audio, geolocation, etc.) 
 ###
 
 class DFSession
 
 	######################################################################
 
-	### Instance Methods ###
+	constructor: ->
+		@dfstreamer = null
 
-	constructor: (emailEnabled) ->
-		@emailEnabled = emailEnabled
-		@isRecording = false
+	start: =>
+		@dfstreamer = new DFStreamer
+		@dfstreamer.start()
 
-	######################################################################
-
-	### Static Methods ###
-
-	this.startSession = ->
-		DFStreamer.startVideoStream
-
-	this.stopSession = ->
-		DFStreamer.stopVideoStream
+	stop: =>
+		@dfstreamer.stop()
+		@dfstreamer = null
+	
+	# Whenever movement is detected (called from DFStreamer)...
+	onMovementDetected: =>
+		
+		# If called for, save the current image
+		if DF.saveImages()
+			DFImageSaver.saveImage (@dfstreamer.currCanvas.toDataURL 'image/png')

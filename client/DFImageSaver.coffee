@@ -7,18 +7,16 @@ class DFImageSaver
 	######################################################################
 
 	### Constants ###
-	HASHLENGTH = 40
 
-	######################################################################
-
-	### Private Methods ###
+	HASH_LENGTH = 40
+	IMG_TYPE = '.png'
 
 	###
 		Given a dataURL, generate a filename for the image and save it to the server.
 	###
-	saveImage = (dataURL) ->
+	this.saveImage = (dataURL) ->
 		blob = dataURL.replace /^data:image\/(png|jpg);base64,/, ''
-		filename = generateHash + '.png'
+		filename = generateHash + IMG_TYPE
 		filepath = generateFilePath()
 		Meteor.call 'saveImage', blob, filename, filepath, 'base64'
 
@@ -28,10 +26,6 @@ class DFImageSaver
 		}
 
 		Meteor.call 'addCapture', capture
-
-	######################################################################
-
-	### Private Methods ###
 	
 	###
 		Returns a random hash string.
@@ -40,7 +34,7 @@ class DFImageSaver
 		result = ''
 		chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 		randomChar = -> chars[Math.round (Math.random() * (chars.length - 1))]
-		for i in [0 ... HASHLENGTH]
+		for i in [0 ... HASH_LENGTH]
 			result +=  randomChar 
 		return result
 
