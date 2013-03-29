@@ -3,6 +3,7 @@ TODO List (no specific order):
 1. Detect browser compatibility, showing a prompt to switch to a better browser if the browser is incompatibile.
 	- Difficulty: 2
 	- Files to modify: home.html, home.js
+	- More Details: Will need to download Modernizr library and include in client/libs folder.
 
 2. Completely redesign the 'View' screen
 	- Difficulty: 8
