@@ -1,0 +1,22 @@
+<template name="recordingInProgress">
+
+	<div id="loading" style="{{isLoadingVisible}}">
+		{{#constant}}
+			<p>Time Until Recording Starts...</p>
+			<div class="progress">	
+	  				<div id="sessionLoader" class="bar" style="width: 0%"></div>
+			</div>
+		{{/constant}}
+	</div>
+
+	<!-- These elements are required by DFStreamer -->
+	<div id="recording-panel" style="{{isRecordingPanelVisible}}">
+		{{#constant}}
+		<video id="cam" width="640" height="480" autoplay></video>
+		<canvas id="resultCanvas"></canvas>
+
+		<div id="btn-stop-recording" class="btn btn-danger">Stop Recording</div>
+		{{/constant}}
+	</div>
+
+</template>

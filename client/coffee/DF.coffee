@@ -26,20 +26,28 @@ class DF
 
 	### Session Getters/Setters ###
 
-	this.emailEnabled = -> Session.get('emailEnabled')
-	this.setEmailEnabled = (value) -> Session.set('emailEnabled', value)
+	this.emailEnabled = -> Session.get 'emailEnabled'
+	this.setEmailEnabled = (value) -> Session.set 'emailEnabled', value
 
-	this.isRecording = -> Session.get('isRecording')
-	this.setIsRecording = (value) -> Session.set('isRecording', value)
+	this.isRecording = -> Session.get 'isRecording'
+	this.setIsRecording = (value) -> Session.set 'isRecording', value
 
-	this.saveImages = -> Session.get('saveImages')
-	this.setSaveImages = (value) -> Session.set('saveImages', value)
+	this.saveImages = -> Session.get 'saveImages'
+	this.setSaveImages = (value) -> Session.set 'saveImages', value
+
+	this.requestingCamPermission = -> Session.get 'requestingCamPermission'
+	this.setRequestingCamPermission = (value) -> Session.set 'requestingCamPermission', value
+
+	this.loadingSession = -> Session.get 'loadingSession'
+	this.setLoadingSession = (value) -> Session.set 'loadingSession', value
 
 	this.clearSettings = ->
 		# Default values
 		@setEmailEnabled false
 		@setIsRecording false
 		@setSaveImages false
+		@requestingCamPermission false
+		@loadingSession false
 
 # Start the app with the default values for Session variables
 do DF.clearSettings

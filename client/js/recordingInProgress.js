@@ -3,15 +3,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Recording-In-Progress Template - Helpers
 
-Template.record.helpers({
+Template.recordingInProgress.helpers({
 
-	// Nothing yet
+	isLoadingVisible: function() {
+		if (DF.loadingSession()) {
+			return "";
+		} else {
+			return "display: none";
+		}
+	},
+
+	isRecordingPanelVisible: function() {
+		if (DF.loadingSession()) {
+			return "display: none";
+		} else {
+			return "";
+		}
+	}
 });
 
 ///////////////////////////////////////////////////////////////////////////////
 // Recording-In-Progress Template - Events
 
-Template.record.events({
+Template.recordingInProgress.events({
 
 	'click #btn-stop-recording': function() {
 		DF.endSession();

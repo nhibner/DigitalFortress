@@ -44,7 +44,7 @@ class DFStreamer
 			be prompted for permissions. Hence, we set a Session
 			variable here to track the permission dialog.
 			###
-			Session.set 'requestingCamPermission', true
+			DF.requestingCamPermission true
 
 			# Start the cam, requesting permission if necessary
 			navigator.getUserMedia {
@@ -67,25 +67,47 @@ class DFStreamer
 	
 	onStartSuccess: (stream) =>
 
-		# Permission received and now recording
-		Session.set 'requestingCamPermission', false
+		# Permission received and now going to load screen
+		DF.requestingCamPermission false
+		DF.currentSession.onCamPermissionReceived()
+
+		# Start loading sequence
+		onDoneLoading = =>
+			DF.setLoadingSession false
+			$('#sessionLoader').css 'width', '0%'
+			Deps.flush()
+			# Start detecting movement
+			@update()
+		
+		DF.setLoadingSession true
+
+		# Clear out all dependencies here
+		Deps.flush()
+
+		# Set the transition on the progress bar
+		transition = switch true
+			when $.browser.webkit then '-webkit-transition'
+			when $.browser.webkit then '-moz-transition'
+			when $.browser.msie then '-ms-transition'
+			when $.browser.opera then '-o-transition'
+			else 'transition'
+
+		tranString = 'width ' + AppConfig.LOADING_TIME + 's linear'
+
+		startTransition = =>
+			cssObj = width: '100%'
+			cssObj[transition] = tranString
+			$('#sessionLoader').css cssObj
+
+        # Start the loading timer and transition
+		Meteor.setTimeout onDoneLoading, (AppConfig.LOADING_TIME * 1000 + 500)
+		Meteor.setTimeout startTransition, 500
 
 		# Save the stream to the class instance
 		@stream = stream
 
 		# Get the video element from the page
 		@video = document.getElementById VIDEO_CAM_ID
-
-		# Setup the video source
-		videoSource = null
-		if window.webkitURL
-			videoSource = window.webkitURL.createObjectURL stream
-		else
-			videoSource = @stream
-
-		# Configure video element to display videoSource
-		@video.autoplay = true
-		@video.src = videoSource
 
 		# Setup the current canvas (holds current video frame)
 		@currCanvas = document.createElement 'canvas'
@@ -100,11 +122,18 @@ class DFStreamer
 		@resultCanvas.height = @video.height
 		@resultContext = @resultCanvas.getContext '2d'
 
-		# Start detecting movement
-		@update()
+		# Setup the video source
+		videoSource = null
+		if window.webkitURL
+			videoSource = window.webkitURL.createObjectURL stream
+		else
+			videoSource = @stream
+
+		# Configure video element to display videoSource
+		@video.src = videoSource
 
 	onStartError: =>
-		Session.set 'requestingCamPermission', false
+		DF.requestingCamPermission false
 		alert 'There has been a problem retrieving the streams ' +
 		      '- did you allow access?'
 

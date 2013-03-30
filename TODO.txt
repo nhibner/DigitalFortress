@@ -1,35 +1,30 @@
 TODO List (no specific order):
 
-1. Detect browser compatibility, showing a prompt to switch to a better browser if the browser is incompatibile.
+1. Detect browser compatibility, showing a prompt to switch to a better browser if the browser is incompatibile. - Aditya
 	- Difficulty: 2
 	- Files to modify: home.html, home.js
 	- More Details: Will need to download Modernizr library and include in client/libs folder.
 
-2. Completely redesign the 'View' screen
+2. Completely redesign the 'View' screen - Shugo, Lavanya
 	- Difficulty: 8
 	- Files to modify: view.html, view.js, various CSS stylesheets, various backend files
-	- More Details: The current 'View' screen is just a placeholder. We need to redesign it to fit with our
-					proposal. There may not be a whole lot of code to write, but a fair amount of design work
-					for the UI of this screen.
+	- More Details: The current 'View' screen is just a placeholder. We need to redesign it to fit with our proposal. There may not be a whole lot of code to write, but a fair amount of design work for the UI of this screen.
 
-3. Record Screen
+3. Record Screen - Jatin, Brian
 	- Difficulty: 9
 	- Files to modify: record.html, record.js, various CSS stylesheets, potentially others
-	- More Details: The current 'Record' screen has no settings, just the "Start Recording" screen. This will
-					need to be redesigned to fit with our proposal. Note that some validation will need to be
-					done on user text inputs and settings will have to be saved so other parts of the app can
-					use them.
+	- More Details: The current 'Record' screen has no settings, just the "Start Recording" screen. This will need to be redesigned to fit with our proposal. Note that some validation will need to be done on user text inputs and settings will have to be saved so other parts of the app can use them.
 
-4. New Background on the Home Page
+4. New Background on the Home Page - Aditya
 	- Difficulty: 2
 	- Files to modify: /public/images/splash.jpg (or home.css if you would like to use a name other than splash.jpg for the background)
 
-5. Prompt the user to accept webcam/location permissions.
-	- Difficulty: 5
+5. Prompt the user to accept webcam/location permissions. - Lavanya
+	- Difficulty: 4
 	- Files to modify: various files (few created yet)
 	- More Details: Backend events for this need to be finalized. A method for displaying modals also needs to be developed.
 
-6. About/Privacy Policy Modals
+6. About/Privacy Policy Modals - Lavanya
 	- Difficult: 4
 	- Files to modify: various files (few created yet)
 
@@ -40,3 +35,12 @@ TODO List (no specific order):
 8. URL to Link Session Publicly
 	- Difficulty: 8
 	- More Details: May not happen due to time constraints.
+
+9. Switch to FlatUI-Free - Shugo
+	- Difficulty: 4
+	- Files to modify: unsure
+	- More Details: Use a different style instead of the default Bootstrap styles.
+
+10. Recording-in-progress screen
+
+* Shugo -> looking into accordions

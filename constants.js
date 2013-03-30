@@ -2,5 +2,6 @@
 // @author Nathan Hibner
 
 var AppConfig = {
-	NAME: 'Digital Fortress'
+	NAME: 'Digital Fortress',
+	LOADING_TIME: 10
 }
