@@ -3,5 +3,7 @@
 
 var AppConfig = {
 	NAME: 'Digital Fortress',
-	LOADING_TIME: 10
+	SITE: 'http://localhost:3000/',
+	LOADING_TIME: 10,
+	IMAGE_DELAY: 2
 }

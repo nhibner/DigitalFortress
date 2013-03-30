@@ -10,36 +10,56 @@ class DFImageSaver
 
 	HASH_LENGTH = 40
 	IMG_TYPE = '.png'
+	ENCODING = 'base64'
 
 	###
 		Given a dataURL, generate a filename for the image and save it to the server.
 	###
-	this.saveImage = (dataURL) ->
-		blob = dataURL.replace /^data:image\/(png|jpg);base64,/, ''
-		filename = generateHash + IMG_TYPE
-		filepath = generateFilePath()
-		Meteor.call 'saveImage', blob, filename, filepath, 'base64'
+	this.save = (sessionProps, blob) ->
 
-		capture = {
-			filename: filename
-			time: new Date().getTime()
-		}
+		# Generate the file name and path
+		filename = DFImageSaver.generateHash() + IMG_TYPE
+		folderpath = DFImageSaver.generateFilePath()
+		path = folderpath + '/' + filename
 
-		Meteor.call 'addCapture', capture
-	
+		fs = __meteor_bootstrap__.require('fs')
+		fs.writeFile path, blob, ENCODING, (error) =>
+			if error
+				console.log(error)
+				#throw new Meteor.Error 500, 'Failed to save file.', error
+			else
+				console.log(path)
+
+		# Build structure to store photo info
+		capture =
+			url: AppConfig.SITE + path
+			date: new Date()
+
+		# Store photo info in the proper session
+		Meteor.users.update({
+				_id: this.userId,
+				'profile.sessions.startTime': sessionProps.startTime
+			},
+			{
+				$addToSet: {
+					'profile.sessions.$.captures': capture
+				}	
+			}
+		);
+
 	###
 		Returns a random hash string.
 	###
-	generateHash = ->
+	this.generateHash = ->
 		result = ''
 		chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 		randomChar = -> chars[Math.round (Math.random() * (chars.length - 1))]
 		for i in [0 ... HASH_LENGTH]
-			result +=  randomChar 
+			result +=  randomChar()
 		return result
 
 	###
 		Returns a valid file path in the 'static' folder to save the image
 	###
-	generateFilePath = ->
-		'captures'
+	this.generateFilePath = ->
+		'static/captures'

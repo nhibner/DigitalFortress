@@ -69,17 +69,8 @@ class DFStreamer
 
 		# Permission received and now going to load screen
 		DF.requestingCamPermission false
-		DF.currentSession.onCamPermissionReceived()
-
-		# Start loading sequence
-		onDoneLoading = =>
-			DF.setLoadingSession false
-			$('#sessionLoader').css 'width', '0%'
-			Deps.flush()
-			# Start detecting movement
-			@update()
-		
 		DF.setLoadingSession true
+		DF.currentSession.onCamPermissionReceived()
 
 		# Clear out all dependencies here
 		Deps.flush()
@@ -92,18 +83,16 @@ class DFStreamer
 			when $.browser.opera then '-o-transition'
 			else 'transition'
 
-		tranString = 'width ' + AppConfig.LOADING_TIME + 's linear'
-
 		startTransition = =>
 			cssObj = width: '100%'
-			cssObj[transition] = tranString
+			cssObj[transition] = 'width ' + AppConfig.LOADING_TIME + 's linear'
 			$('#sessionLoader').css cssObj
 
         # Start the loading timer and transition
-		Meteor.setTimeout onDoneLoading, (AppConfig.LOADING_TIME * 1000 + 500)
+		Meteor.setTimeout @onDoneLoading, (AppConfig.LOADING_TIME * 1000 + 500)
 		Meteor.setTimeout startTransition, 500
 
-		# Save the stream to the class instance
+		# Save the stream to the class instance (for closing on stop)
 		@stream = stream
 
 		# Get the video element from the page
@@ -134,12 +123,20 @@ class DFStreamer
 
 	onStartError: =>
 		DF.requestingCamPermission false
-		alert 'There has been a problem retrieving the streams ' +
-		      '- did you allow access?'
+		alert 'There has been a problem retrieving the streams - did you allow access?'
 
-	###
-		Function that represents the drawing loop for the streamer
-	###
+	onDoneLoading: =>
+		# Stop showing the loading screen
+		DF.setLoadingSession false
+		$('#sessionLoader').css 'width', '0%'
+		Deps.flush()
+
+		# Start detecting movement
+		@update()
+
+		# Start saving images
+		DF.setSaveImages true
+
 	update: =>
 		# Draw the current frame on currCanvas
 		@currContext.drawImage @video, 0, 0, @video.width, @video.height
@@ -148,9 +145,7 @@ class DFStreamer
 		# Update frame after a short sleep continuously
 		Meteor.setTimeout @update, 1000/FPS
 
-	###
-		Function that blends images to detect movement
-	###
+	# Function that blends images to detect movement
 	blend: =>
 
 		width = @currCanvas.width
