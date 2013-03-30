@@ -17,7 +17,7 @@ Meteor.startup(function() {
 			var res = this.response;
 			var fs = __meteor_bootstrap__.require('fs');
 			var img = fs.readFileSync('static/captures/' + hash + '.png');
-			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.writeHead(200, {'Content-Type': 'image/png'});
 			res.end(img, 'binary');
 		}
 	})
@@ -86,9 +86,6 @@ Meteor.methods({
 
   		// Save the image
   		capture = DFImageSaver.save(sessionProps, blob);
-
-  		console.log(sessionProps.valueOf());
-  		//console.log("db.users.update({_id: " + this.userId + ", 'profile.sessions.startTime': " + sessionProps.startTime + "}, { $addToSet: { 'profile.sessions.$.captures': " + capture.valueOf() + "}});");
 
   		// Store photo info in the proper session
 		Meteor.users.update({

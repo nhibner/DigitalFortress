@@ -6,7 +6,11 @@
 Template.view.helpers({
 
 	captures: function() {
-		return Meteor.user().profile.captures;
+		var sessions = Meteor.user().profile.sessions;
+		if(sessions && sessions[0])
+			return sessions[0].captures;
+		else
+			return null
 	}
 });
 

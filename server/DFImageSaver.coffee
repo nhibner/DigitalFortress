@@ -19,8 +19,9 @@ class DFImageSaver
 
 		# Generate the file name and path
 		filename = DFImageSaver.generateHash() + IMG_TYPE
+		root = 'static/'
 		folderpath = DFImageSaver.generateFilePath()
-		path = folderpath + '/' + filename
+		path = root + '/' + folderpath + '/' + filename
 
 		fs = __meteor_bootstrap__.require('fs')
 		fs.writeFile path, blob, ENCODING, (error) =>
@@ -31,9 +32,9 @@ class DFImageSaver
 				console.log(path)
 
 		# Build structure to store photo info
-		imagepath = AppConfig.SITE + path
+		relImagePath = folderpath + '/' + filename
 		return capture =
-			url: imagepath
+			url: relImagePath
 			date: new Date()
 
 	###
@@ -51,4 +52,4 @@ class DFImageSaver
 		Returns a valid file path in the 'static' folder to save the image
 	###
 	this.generateFilePath = ->
-		'static/captures'
+		'captures'
