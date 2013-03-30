@@ -26,8 +26,7 @@ class DFSession
 		DF.setIsRecording true
 		props = @getProperties()
 		Meteor.call 'createSessionOnServer', props, (error, result) =>
-			if @startTime?
-				@startTime = result.startTime
+			@startTime = result?.startTime
 
 	stop: =>
 		@dfstreamer.stop()
@@ -36,8 +35,7 @@ class DFSession
 
 		props = @getProperties()
 		Meteor.call 'endSessionOnServer', props, (error, result) =>
-			if @endTime?
-				@endTime = result.endTime
+			@endTime = result?.endTime
 
 	getProperties: =>
 		return {
@@ -62,7 +60,7 @@ class DFSession
 			blob = blob.replace /^data:image\/(png|jpg);base64,/, ''
 
 			# Save the image
-			Meteor.call 'saveImage', (@getProperties()), blob, (error, result) =>
+			Meteor.call 'saveImage', @getProperties(), blob, (error, result) =>
 				@captures.push(result)
 
-			Meteor.setTimeout (-> DF.setSaveImages true), AppConfig.IMAGE_DELAY
+			Meteor.setTimeout (-> DF.setSaveImages true), (AppConfig.IMAGE_DELAY * 1000)

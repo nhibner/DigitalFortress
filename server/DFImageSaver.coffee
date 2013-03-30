@@ -31,21 +31,10 @@ class DFImageSaver
 				console.log(path)
 
 		# Build structure to store photo info
-		capture =
-			url: AppConfig.SITE + path
+		imagepath = AppConfig.SITE + path
+		return capture =
+			url: imagepath
 			date: new Date()
-
-		# Store photo info in the proper session
-		Meteor.users.update({
-				_id: this.userId,
-				'profile.sessions.startTime': sessionProps.startTime
-			},
-			{
-				$addToSet: {
-					'profile.sessions.$.captures': capture
-				}	
-			}
-		);
 
 	###
 		Returns a random hash string.

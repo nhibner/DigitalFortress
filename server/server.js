@@ -83,7 +83,25 @@ Meteor.methods({
 
 	// Function to save an image file
   	saveImage: function(sessionProps, blob) {
+
   		// Save the image
-  		return DFImageSaver.save(sessionProps, blob)
+  		capture = DFImageSaver.save(sessionProps, blob);
+
+  		console.log(sessionProps.valueOf());
+  		//console.log("db.users.update({_id: " + this.userId + ", 'profile.sessions.startTime': " + sessionProps.startTime + "}, { $addToSet: { 'profile.sessions.$.captures': " + capture.valueOf() + "}});");
+
+  		// Store photo info in the proper session
+		Meteor.users.update({
+				_id: this.userId,
+				'profile.sessions.startTime': sessionProps.startTime
+			},
+			{
+				$addToSet: {
+					'profile.sessions.$.captures': capture
+				}	
+			}
+		);
+
+		return capture;
 	}
 });
