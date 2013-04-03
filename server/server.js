@@ -20,7 +20,15 @@ Meteor.startup(function() {
 			res.writeHead(200, {'Content-Type': 'image/png'});
 			res.end(img, 'binary');
 		}
-	})
+	});
+
+	// Make sure user account login services are configured
+	Accounts.loginServiceConfiguration.remove();
+	Accounts.loginServiceConfiguration.insert({
+		"service": "google",
+		"clientId": "721224193710.apps.googleusercontent.com",
+		"secret": "0i3OqYQBKCbbZkUJZMsvhQ2T"
+	});
 });
 
 ///////////////////////////////////////////////////////////////////////////////
