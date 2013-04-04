@@ -19,7 +19,7 @@ class DFImageSaver
 
 		# Generate the file name and path
 		filename = DFImageSaver.generateHash() + IMG_TYPE
-		root = 'static/'
+		root = 'static'
 		folderpath = DFImageSaver.generateFilePath()
 		path = root + '/' + folderpath + '/' + filename
 
