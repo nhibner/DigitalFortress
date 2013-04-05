@@ -6,7 +6,7 @@
 Meteor.startup(function() {
 
 	// Tell Meteor to not auto-reload when files change in "static" directory
-	connect = __meteor_bootstrap__.require('connect')
+	connect = Npm.require('connect')
 	app = __meteor_bootstrap__.app
 	app.use(connect.static('static'));
 	app.use(connect.static('static/captures'));
@@ -15,7 +15,7 @@ Meteor.startup(function() {
 	Meteor.Router.add({
 		'/captures/:hash.png': function(hash) {
 			var res = this.response;
-			var fs = __meteor_bootstrap__.require('fs');
+			var fs = Npm.require('fs');
 			var img = fs.readFileSync('static/captures/' + hash + '.png');
 			res.writeHead(200, {'Content-Type': 'image/png'});
 			res.end(img, 'binary');
