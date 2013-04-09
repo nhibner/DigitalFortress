@@ -1,1 +1,0 @@
-User images will be stored here ('static/captures'). This file is being committed to the repo in order to force this folder to be in the repo.

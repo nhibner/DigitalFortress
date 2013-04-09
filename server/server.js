@@ -5,23 +5,6 @@
 
 Meteor.startup(function() {
 
-	// Tell Meteor to not auto-reload when files change in "static" directory
-	connect = Npm.require('connect')
-	app = __meteor_bootstrap__.app
-	app.use(connect.static('static'));
-	app.use(connect.static('static/captures'));
-
-	// Add server-side routes
-	Meteor.Router.add({
-		'/captures/:hash.png': function(hash) {
-			var res = this.response;
-			var fs = Npm.require('fs');
-			var img = fs.readFileSync('static/captures/' + hash + '.png');
-			res.writeHead(200, {'Content-Type': 'image/png'});
-			res.end(img, 'binary');
-		}
-	});
-
 	// Make sure user account login services are configured
 	Accounts.loginServiceConfiguration.remove();
 	Accounts.loginServiceConfiguration.insert({
@@ -90,10 +73,17 @@ Meteor.methods({
 	},
 
 	// Function to save an image file
-  	saveImage: function(sessionProps, blob) {
+  	saveImage: function(sessionProps, dataURL) {
 
   		// Save the image
-  		capture = DFImageSaver.save(sessionProps, blob);
+  		var rID = Random.id();
+  		capture = {
+  			uid: rID,
+  			imagePath: 'captures/' + rID + '.png',
+  			timestamp: new Date(),
+  			source: dataURL
+  		};
+  		console.log(capture.imagePath);
 
   		// Store photo info in the proper session
 		Meteor.users.update({

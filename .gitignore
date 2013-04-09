@@ -1,9 +1,6 @@
 # Project Specific Ignore Files
 
-static/captures/*
-
-# Except..
-!static/captures/README.txt
+# None yet
 
 
 # Mac OSX Files
