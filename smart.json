@@ -5,7 +5,6 @@
   },
   "packages": {
     "router": {},
-    "transitioner": {},
-    "modernizr-meteor": {}
+    "transitioner": {}
   }
 }
