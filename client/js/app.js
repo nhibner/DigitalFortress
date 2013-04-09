@@ -34,5 +34,8 @@ Meteor.autorun(function () {
 ///////////////////////////////////////////////////////////////////////////////
 // Data Subscriptions
 
-// Subscribe to "users" collection
-Meteor.subscribe("users");
+// Subscribe to 'users' collection
+Meteor.subscribe('users');
+
+// Subscribe to 'myCaptures' collection
+Meteor.subscribe('myCaptures');

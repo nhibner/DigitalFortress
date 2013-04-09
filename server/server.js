@@ -5,21 +5,9 @@
 
 Meteor.startup(function() {
 
-	// Tell Meteor to not auto-reload when files change in "static" directory
-	connect = Npm.require('connect')
-	app = __meteor_bootstrap__.app
-	app.use(connect.static('static'));
-	app.use(connect.static('static/captures'));
-
 	// Add server-side routes
 	Meteor.Router.add({
-		'/captures/:hash.png': function(hash) {
-			var res = this.response;
-			var fs = Npm.require('fs');
-			var img = fs.readFileSync('static/captures/' + hash + '.png');
-			res.writeHead(200, {'Content-Type': 'image/png'});
-			res.end(img, 'binary');
-		}
+		// Nothing yet
 	});
 
 	// Make sure user account login services are configured
@@ -40,6 +28,13 @@ Meteor.publish("users", function () {
   	return Meteor.users.find({_id: this.userId}, 
   		{fields: {'services': 1, 'profile': 1}});
 });
+
+// Only publish captures for the current session (TODO)
+Meteor.publish('myCaptures', function() {
+	if(this.userId) {
+		return Captures.find({owner: this.userId })
+	}
+})
 
 ///////////////////////////////////////////////////////////////////////////////
 // Server-side Methods
@@ -90,10 +85,21 @@ Meteor.methods({
 	},
 
 	// Function to save an image file
-  	saveImage: function(sessionProps, blob) {
+  	saveImage: function(sessionProps, dataURL) {
+
+  		// Convert dataURL to buffer
+		var regex = /^data:.+\/(.+);base64,(.*)$/;
+		var matches = dataURL.match(regex);
+		var data = matches[2];
+		var buffer = new Buffer(data, 'base64');
 
   		// Save the image
-  		capture = DFImageSaver.save(sessionProps, blob);
+  		filename = Random.id() + '.png';
+  		fileId = Captures.storeBuffer(filename, buffer);
+  		console.log('Saving image... ' + filename);
+
+  		var fs = Npm.require('fs');
+  		fs.writeFileSync(filename, buffer);
 
   		// Store photo info in the proper session
 		Meteor.users.update({
@@ -102,11 +108,11 @@ Meteor.methods({
 			},
 			{
 				$addToSet: {
-					'profile.sessions.$.captures': capture
+					'profile.sessions.$.captures': fileId
 				}	
 			}
 		);
 
-		return capture;
+		return fileId;
 	}
 });

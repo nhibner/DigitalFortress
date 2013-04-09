@@ -55,12 +55,11 @@ class @DFSession
 			# Stop saving images
 			DF.setSaveImages false
 
-			# Get the image blob
-			blob = @dfstreamer.currCanvas.toDataURL 'image/png'
-			blob = blob.replace /^data:image\/(png|jpg);base64,/, ''
+			# Get the image buffer
+			dataURL = @dfstreamer.currCanvas.toDataURL 'image/png'
 
 			# Save the image
-			Meteor.call 'saveImage', @getProperties(), blob, (error, result) =>
+			Meteor.call 'saveImage', @getProperties(), dataURL, (error, result) =>
 				@captures.push(result)
 
 			Meteor.setTimeout (-> DF.setSaveImages true), (AppConfig.IMAGE_DELAY * 1000)
