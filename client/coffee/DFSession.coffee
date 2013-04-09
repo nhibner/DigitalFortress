@@ -5,7 +5,7 @@
 	(i.e. video, audio, geolocation, etc.) 
 ###
 
-class DFSession
+class @DFSession
 
 	######################################################################
 

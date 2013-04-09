@@ -2,7 +2,7 @@
 Class for managing the Digital Fortress video stream (via WebRTC)
 ###
 
-class DFStreamer
+class @DFStreamer
 
 	### Constants ###
 

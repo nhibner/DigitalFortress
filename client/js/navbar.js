@@ -4,7 +4,7 @@
 // Navbar Template - Constants
 
 // Pages in navigation bar in the app
-var NavbarTabs = [
+NavbarTabs = [
 	{
 		ROUTE: 'record',
 		DISPLAY: 'Record'
