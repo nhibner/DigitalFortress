@@ -2,7 +2,7 @@
 	Class providing client-side methods to save an image in Digital Fortress
 ###
 
-class DFImageSaver
+class @DFImageSaver
 
 	######################################################################
 
@@ -23,7 +23,7 @@ class DFImageSaver
 		folderpath = DFImageSaver.generateFilePath()
 		path = root + '/' + folderpath + '/' + filename
 
-		fs = __meteor_bootstrap__.require('fs')
+		fs = Npm.require('fs')
 		fs.writeFile path, blob, ENCODING, (error) =>
 			if error
 				console.log(error)
