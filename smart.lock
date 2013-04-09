@@ -1,0 +1,19 @@
+{
+  "meteor": {
+    "git": "https://github.com/meteor/meteor.git",
+    "branch": "master",
+    "commit": "0ffea1c4c308ed24906984f99b13b8fca5a0956c"
+  },
+  "dependencies": {
+    "basePackages": {
+      "collectionFS": {}
+    },
+    "packages": {
+      "collectionFS": {
+        "git": "https://github.com/raix/Meteor-CollectionFS.git",
+        "tag": "v0.2.1",
+        "commit": "6b327efb1de20b3ce061b76bd8fc4b21638e7e66"
+      }
+    }
+  }
+}
