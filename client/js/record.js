@@ -6,7 +6,7 @@
 Template.record.helpers({
 
 	isRecording: function() {
-		return Session.get('isRecording');
+		return DF.isRecording();
 	}
 });
 
