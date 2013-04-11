@@ -65,8 +65,6 @@ Template.navbar.events({
 		if(tab.ROUTE == 'view') {
 
 			// Get the sessions
-			var sessions = Meteor.user().profile.sessions;
-
 			var sessions = DF.userData().sessions;
 
 			// Get the latest session

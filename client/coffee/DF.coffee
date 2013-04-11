@@ -7,7 +7,7 @@ class @DF
 	######################################################################
 
 	# Variable to store the current Digital Fortress session
-	@currentSession = null
+	@recordingSession = null
 
 	# Convenience method to get the user's data
 	this.userData = ->
@@ -18,15 +18,15 @@ class @DF
 	### Helper Methods to Manage Sessions ###
 
 	this.startSession = ->
-		if @currentSession?
-			@currentSession.stopSession
-		@currentSession = new DFSession
-		@currentSession.start()
+		if @recordingSession?
+			@recordingSession.stopSession
+		@recordingSession = new DFSession
+		@recordingSession.start()
 
 	this.endSession = ->
-		if @currentSession?
-			@currentSession.stop()
-			@currentSession = null
+		if @recordingSession?
+			@recordingSession.stop()
+			@recordingSession = null
 
 	######################################################################
 

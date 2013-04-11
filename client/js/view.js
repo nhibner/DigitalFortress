@@ -38,7 +38,8 @@ Template.view.events({
 	'click .session-nav-link': function(event) {
 		var id = event.target.id;
 		DF.setViewSessionId(id);
-	}
+	},
+
 	// Colorful Accordion
 	'click li.button a': function(event){
 		/* Finding the drop down list that corresponds to the current section: */
