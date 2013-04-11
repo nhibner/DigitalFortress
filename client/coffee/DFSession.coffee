@@ -11,7 +11,7 @@ class @DFSession
 
 	constructor: ->
 		@dfstreamer = null
-		@id = null
+		@id = Random.id()
 		@startTime = null
 		@endTime = null
 		@captures = []
@@ -39,6 +39,7 @@ class @DFSession
 
 	getProperties: =>
 		return {
+			@id
 			@startTime
 			@endTime
 			@captures

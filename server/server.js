@@ -56,7 +56,7 @@ Meteor.methods({
 		// Set the endTimeDate for the session on the server
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.startTime': sessionProps.startTime
+				'profile.sessions.id': sessionProps.id
 			},
 			{
 				$set: {
@@ -88,7 +88,7 @@ Meteor.methods({
   		// Store photo info in the proper session
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.startTime': sessionProps.startTime
+				'profile.sessions.id': sessionProps.id
 			},
 			{
 				$addToSet: {
