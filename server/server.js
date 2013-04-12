@@ -53,7 +53,8 @@ Meteor.methods({
 	// Function to create session data structure on server
 	createSessionOnServer: function(sessionProps) {
 		// Insert session properties into the database for the user
-		sessionProps.startTime = new Date();
+		var start = new Date();
+		sessionProps.startTime = start;
 		Meteor.users.update({_id: this.userId}, 
 			{$addToSet: {"profile.sessions": sessionProps}});
 		return sessionProps;
