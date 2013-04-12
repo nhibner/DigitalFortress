@@ -12,21 +12,24 @@
 				{{#if isBrowserCompatible}}
 					{{loginButtons}}
 				{{else}}
-					<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  						
-  						<div class="modal-header">
-    							<h3 id="myModalLabel">Incompatible Browser</h3>
-  						</div>
-  						
-  						<div class="modal-body">
-    					<p style="color:red;">Digital Fortress does not support your browser. Please download a cutting-edge browser like <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a></p>
-  						</div>
-  						
-  						<div class="modal-footer">
-    						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  						</div>
 					
+					<div id="myModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+						
+						<div class="modal-header">
+								<h3 id="myModalLabel">Incompatible Browser</h3>
+						</div>
+						
+						<div class="modal-body">
+							<p style="color:red">Digital Fortress does not support your browser. Please download a cutting-edge browser like <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a></p>
+						</div>
+
+						<div class="modal-footer">
+						<button class="btn" data-dismiss="modal">Close</button>
+						</div>
 					</div>
+					
+					<div class="modal-backdrop fade in"></div>
+				
 				{{/if}}
 
 			</div>
