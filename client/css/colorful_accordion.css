@@ -1,12 +1,4 @@
 /* Colorful Accordion */
-body{
-	/* Setting default text color, background and a font stack */
-	color:#cccccc;
-	font-size:13px;
-	/*background: #302b23;*/
-	font-family:Arial, Helvetica, sans-serif;
-}
-
 ul{
 	margin:0;
 	padding:0;
