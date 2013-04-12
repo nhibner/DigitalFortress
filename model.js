@@ -9,7 +9,7 @@ Captures = new CollectionFS('captures', { autopublish: false });
 Captures.allow({
 
 	insert: function(userId, myFile) {
-		return true;
+		return false;
 	},
 
 	update: function(userId, files, fields, modifier) {
@@ -25,7 +25,6 @@ Captures.allow({
 
 Captures.fileHandlers({
 	default: function(options) { //Options contains blob and fileRecord - same is expected in return if should be saved on filesytem, can be modified
-		console.log(options.fileRecord);
 		return { blob: options.blob, fileRecord: options.fileRecord }; //if no blob then save result in fileHandle (added createdAt)
 	}
 });

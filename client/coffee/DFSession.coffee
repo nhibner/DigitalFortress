@@ -11,7 +11,7 @@ class @DFSession
 
 	constructor: ->
 		@dfstreamer = null
-		@id = null
+		@sessionId = Random.id()
 		@startTime = null
 		@endTime = null
 		@captures = []
@@ -39,6 +39,7 @@ class @DFSession
 
 	getProperties: =>
 		return {
+			@sessionId
 			@startTime
 			@endTime
 			@captures
@@ -59,7 +60,7 @@ class @DFSession
 			dataURL = @dfstreamer.currCanvas.toDataURL 'image/png'
 
 			# Save the image
-			Meteor.call 'saveImage', @getProperties(), dataURL, (error, result) =>
+			Meteor.call 'saveImage', @getProperties(), dataURL, (new Date()), (error, result) =>
 				@captures.push(result)
 
 			Meteor.setTimeout (-> DF.setSaveImages true), (AppConfig.IMAGE_DELAY * 1000)

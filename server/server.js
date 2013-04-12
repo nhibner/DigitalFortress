@@ -68,7 +68,7 @@ Meteor.methods({
 		// Set the endTimeDate for the session on the server
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.startTime': sessionProps.startTime
+				'profile.sessions.sessionId': sessionProps.sessionId
 			},
 			{
 				$set: {
@@ -85,34 +85,38 @@ Meteor.methods({
 	},
 
 	// Function to save an image file
-  	saveImage: function(sessionProps, dataURL) {
+  	saveImage: function(sessionProps, dataURL, dateTime) {
 
   		// Convert dataURL to buffer
 		var regex = /^data:.+\/(.+);base64,(.*)$/;
 		var matches = dataURL.match(regex);
-		var data = matches[2];
-		var buffer = new Buffer(data, 'base64');
+		var buffer = new Buffer(matches[2], 'base64');
 
   		// Save the image
-  		filename = Random.id() + '.png';
-  		fileId = Captures.storeBuffer(filename, buffer);
-  		console.log('Saving image... ' + filename);
+  		var filename = Random.id() + '.png';
+  		var fileId = Captures.storeBuffer(filename, buffer, 'base64');
 
-  		var fs = Npm.require('fs');
-  		fs.writeFileSync(filename, buffer);
+  		// Create the capture
+  		var capture = {
+  			'date': dateTime,
+  			'fileId': fileId,
+  			'filename': filename
+  		};
+
+  		console.log(capture);
 
   		// Store photo info in the proper session
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.startTime': sessionProps.startTime
+				'profile.sessions.sessionId': sessionProps.sessionId
 			},
 			{
 				$addToSet: {
-					'profile.sessions.$.captures': fileId
+					'profile.sessions.$.captures': capture
 				}	
 			}
 		);
 
-		return fileId;
+		return capture;
 	}
 });
