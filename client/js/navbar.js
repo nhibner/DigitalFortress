@@ -73,7 +73,7 @@ Template.navbar.events({
 			});
 
 			// Set the view session id
-			DF.setViewSessionId(session.id);
+			DF.setViewSessionId(session.sessionId);
 		}
 	}
 });
