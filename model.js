@@ -68,8 +68,7 @@ Captures.fileHandlers({
 				'profile.sessions.$': session
 			}
 		});
-
-		console.log('saved');
+		console.log('Saved source URL for image with file id: ' + fileId);
 
 		// Return the blob and fileRecord to save
 		return { blob: options.blob, fileRecord: options.fileRecord }; //if no blob then save result in fileHandle (added createdAt)
