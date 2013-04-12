@@ -24,6 +24,13 @@ Meteor.publish("users", function () {
   		{fields: {'services': 1, 'profile': 1}});
 });
 
+// Only publish captures for the current session (TODO)
+Meteor.publish('myCaptures', function() {
+	if(this.userId) {
+		return Captures.find({owner: this.userId })
+	}
+})
+
 ///////////////////////////////////////////////////////////////////////////////
 // Server-side Methods
 
@@ -56,9 +63,8 @@ Meteor.methods({
 		// Set the endTimeDate for the session on the server
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.id': sessionProps.id
-			},
-			{
+				'profile.sessions.sessionId': sessionProps.sessionId
+			}, {
 				$set: {
 					'profile.sessions.$.endTime': new Date()
 				}	
@@ -73,24 +79,38 @@ Meteor.methods({
 	},
 
 	// Function to save an image file
-  	saveImage: function(sessionProps, dataURL) {
+  	saveImage: function(sessionProps, dataURL, dateTime) {
+
+  		// Convert dataURL to buffer
+		var regex = /^data:.+\/(.+);base64,(.*)$/;
+		var matches = dataURL.match(regex);
+		var buffer = new Buffer(matches[2], 'base64');
+
+		// Create metadata
+		var options = {
+			metadata: {
+				'userId': Meteor.user()._id,
+				'sessionId': sessionProps.sessionId
+			}
+		};
 
   		// Save the image
-  		var rID = Random.id();
-  		capture = {
-  			uid: rID,
-  			imagePath: 'captures/' + rID + '.png',
-  			timestamp: new Date(),
-  			source: dataURL
+  		var filename = Random.id() + '.png';
+  		var fileId = Captures.storeBuffer(filename, buffer, 'base64', options);
+
+  		// Create the capture
+  		var capture = {
+  			'date': dateTime,
+  			'fileId': fileId,
+  			'filename': filename,
+  			'source': '' // empty until server updates it
   		};
-  		console.log(capture.imagePath);
 
   		// Store photo info in the proper session
 		Meteor.users.update({
 				_id: this.userId,
-				'profile.sessions.id': sessionProps.id
-			},
-			{
+				'profile.sessions.sessionId': sessionProps.sessionId
+			}, {
 				$addToSet: {
 					'profile.sessions.$.captures': capture
 				}	

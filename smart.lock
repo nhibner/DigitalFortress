@@ -6,13 +6,22 @@
   },
   "dependencies": {
     "basePackages": {
-      "collectionFS": {}
+      "modernizr-meteor": {},
+      "collectionFS-nhibner": {
+        "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
+        "branch": "devel-buffer-encoding"
+      }
     },
     "packages": {
-      "collectionFS": {
-        "git": "https://github.com/raix/Meteor-CollectionFS.git",
-        "tag": "v0.2.1",
-        "commit": "6b327efb1de20b3ce061b76bd8fc4b21638e7e66"
+      "modernizr-meteor": {
+        "git": "https://github.com/ckir/modernizr-meteor.git",
+        "tag": "v2.6.2",
+        "commit": "391ca2a3beff3cd2b0e1099cb2d744b5a2e8a73e"
+      },
+      "collectionFS-nhibner": {
+        "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
+        "branch": "devel-buffer-encoding",
+        "commit": "2768d4353b681d19a5859d29b581208a22cbb817"
       }
     }
   }

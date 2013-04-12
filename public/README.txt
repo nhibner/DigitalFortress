@@ -1,1 +1,0 @@
-Public files (such as images) go in this directory.
