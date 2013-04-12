@@ -13,7 +13,7 @@ Template.view.helpers({
 		// Get the session with that id
 		var sessions = Meteor.user().profile.sessions;
 		var session = _.find(sessions, function(session) {
-			return id = session.id;
+			return id = session.sessionId;
 		});
 
 		// Get the captures from the session if available
