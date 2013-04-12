@@ -12,10 +12,14 @@ Template.record.helpers({
 						navigator.mozGetUserMedia ||
 						navigator.webkitGetUserMedia ||
 						navigator.msGetUserMedia;
-
-		// Modify the return statement to use Modernizr to also check
-		// for geolocation API access and HTML 5 video/audio compatibility
-		return hasWebRTC;
+		//	Checks whether or not the browser supports WebRTC
+		var hasAudio = Modernizr.audio;
+		//	Checks whether or not the browser supports HTML5 Audio
+		var hasVideo = Modernizr.video;
+		//	Checks whether or not the browser supports HTML5 Video
+		var hasGeolocation = Modernizr.geolocation;
+		//	Checks whether or not the browser supports Geolocation API
+		return hasWebRTC&&hasGeolocation&&hasVideo&&hasAudio;
 	}
 });
 
