@@ -69,8 +69,7 @@ Meteor.methods({
 		Meteor.users.update({
 				_id: this.userId,
 				'profile.sessions.sessionId': sessionProps.sessionId
-			},
-			{
+			}, {
 				$set: {
 					'profile.sessions.$.endTime': new Date()
 				}	
@@ -92,25 +91,31 @@ Meteor.methods({
 		var matches = dataURL.match(regex);
 		var buffer = new Buffer(matches[2], 'base64');
 
+		// Create metadata
+		var options = {
+			metadata: {
+				'userId': Meteor.user()._id,
+				'sessionId': sessionProps.sessionId
+			}
+		};
+
   		// Save the image
   		var filename = Random.id() + '.png';
-  		var fileId = Captures.storeBuffer(filename, buffer, 'base64');
+  		var fileId = Captures.storeBuffer(filename, buffer, 'base64', options);
 
   		// Create the capture
   		var capture = {
   			'date': dateTime,
   			'fileId': fileId,
-  			'filename': filename
+  			'filename': filename,
+  			'source': '' // empty until server updates it
   		};
-
-  		console.log(capture);
 
   		// Store photo info in the proper session
 		Meteor.users.update({
 				_id: this.userId,
 				'profile.sessions.sessionId': sessionProps.sessionId
-			},
-			{
+			}, {
 				$addToSet: {
 					'profile.sessions.$.captures': capture
 				}	
