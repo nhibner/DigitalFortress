@@ -1,5 +1,9 @@
 {
   "packages": {
-    "collectionFS": {}
+    "modernizr-meteor": {},
+    "collectionFS-nhibner": {
+      "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
+      "branch": "devel-buffer-encoding"
+    }
   }
 }

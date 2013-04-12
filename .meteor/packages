@@ -12,4 +12,6 @@ jquery
 email
 underscore
 coffeescript
+modernizr-meteor
 random
+collectionFS-nhibner
