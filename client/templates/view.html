@@ -2,51 +2,60 @@
 
 	{{> navbar}}
 
-	<!-- Note: The 'row-fluid', 'span4', and 'span8' classes are provided by Bootstrap's fluid grid system. -->
-	<div class="row-fluid">
+	{{! Only print the "normal" view screen when sessions have been recorded. }}
+	{{#if sessions}}
 
-		<div id="session-nav" class="span4">
-			{{#each sessions}}
-				<a id="{{sessionId}}" class="session-nav-link" href="">{{startTime}}</a>
-			{{/each}}
-		</div>
+		<!-- Note: The 'row-fluid', 'span4', and 'span8' classes are provided by Bootstrap's fluid grid system. -->
+		<div class="row-fluid">
 
-		<!-- Details about the current selected session. -->
-		<div id="session-details" class="span8">
-			<div id="session-info">
-
-				<li class="ca_menu">
-					<ul>
-						<li class="ca_button"><a href="#" class="ca_blue">Location<span></span></a></li>
-						<li class="ca_dropdown">
-							<ul>
-								<li>Last Location (View Map)</li>
-							</ul>
-						</li>
-					</ul>
-				 </li>
-
-				<li class="ca_menu">
-					<ul>
-						<li class="ca_button"><a href="#" class="ca_blue">Audio<span></span></a></li>
-						<li class="ca_dropdown">
-							<ul>
-								<li>This is a placeholder for the audio player.</li>
-							</ul>
-						</li>
-					</ul>
-				 </li>
-
-			</div>
-
-			<div id="captures">
-				{{#each captures}}
-					<img src="{{source}}" />
+			<div id="session-nav" class="span4">
+				{{#each sessions}}
+					<a id="{{sessionId}}" class="session-nav-link" href="">{{startTime}}</a>
 				{{/each}}
 			</div>
-			
+
+			<!-- Details about the current selected session. -->
+			<div id="session-details" class="span8">
+				<div id="session-info">
+
+					<li class="ca_menu">
+						<ul>
+							<li class="ca_button"><a href="#" class="ca_blue">Location<span></span></a></li>
+							<li class="ca_dropdown">
+								<ul>
+									<li>Last Location (View Map)</li>
+								</ul>
+							</li>
+						</ul>
+					 </li>
+
+					<li class="ca_menu">
+						<ul>
+							<li class="ca_button"><a href="#" class="ca_blue">Audio<span></span></a></li>
+							<li class="ca_dropdown">
+								<ul>
+									<li>This is a placeholder for the audio player.</li>
+								</ul>
+							</li>
+						</ul>
+					 </li>
+
+				</div>
+
+				<div id="captures">
+					{{#each captures}}
+						<img src="{{source}}" />
+					{{/each}}
+				</div>
+				
+			</div>
+
 		</div>
 
-	</div>
+	{{else}}
+
+		<h3>No sessions found</h3>
+
+	{{/if}}
 
 </template>
