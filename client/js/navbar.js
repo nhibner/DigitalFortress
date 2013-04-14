@@ -67,13 +67,17 @@ Template.navbar.events({
 			// Get the sessions
 			var sessions = Meteor.user().profile.sessions;
 
+			var sessions = DF.userData().sessions;
+
 			// Get the latest session
 			var session = _.max(sessions, function(session) {
 				return session.startTime;
 			});
 
 			// Set the view session id
-			DF.setViewSessionId(session.sessionId);
+			if(session.sessionId) {
+				DF.setViewSessionId(session.sessionId);
+			}
 		}
 	}
 });
