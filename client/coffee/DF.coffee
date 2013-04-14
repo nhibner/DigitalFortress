@@ -9,7 +9,7 @@ class @DF
 	# Variable to store the current Digital Fortress session
 	@currentSession = null
 
-	### Helper Methods to Manage Sessions ###
+	### Helper Methods for the app in general ###
 
 	this.startSession = ->
 		if @currentSession?
@@ -21,6 +21,13 @@ class @DF
 		if @currentSession?
 			@currentSession.stop()
 			@currentSession = null
+
+	this.isCompatible = ->
+		hasWebRTC = navigator.getUserMedia ||
+					navigator.mozGetUserMedia ||
+					navigator.webkitGetUserMedia ||
+					navigator.msGetUserMedia
+		return hasWebRTC && Modernizr.audio && Modernizr.video && Modernizr.geolocation
 
 	######################################################################
 
