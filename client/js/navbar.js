@@ -75,7 +75,7 @@ Template.navbar.events({
 			});
 
 			// Set the view session id
-			if(session.sessionId) {
+			if(session) {
 				DF.setViewSessionId(session.sessionId);
 			}
 		}
