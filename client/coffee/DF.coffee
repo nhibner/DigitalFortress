@@ -15,8 +15,7 @@ class @DF
 		if not id then null
 		else UserData.findOne({uid: id});
 
-	### Helper Methods to Manage Sessions ###
-
+	### Helper Methods for the app in general ###
 	this.startSession = ->
 		if @currentSession?
 			@currentSession.stopSession
@@ -27,6 +26,13 @@ class @DF
 		if @currentSession?
 			@currentSession.stop()
 			@currentSession = null
+
+	this.isCompatible = ->
+		hasWebRTC = navigator.getUserMedia ||
+					navigator.mozGetUserMedia ||
+					navigator.webkitGetUserMedia ||
+					navigator.msGetUserMedia
+		return hasWebRTC && Modernizr.audio && Modernizr.video && Modernizr.geolocation
 
 	######################################################################
 
