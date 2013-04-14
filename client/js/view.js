@@ -42,8 +42,10 @@ Template.view.events({
 
 	// Colorful Accordion
 	'click li.button a': function(event){
+
 		/* Finding the drop down list that corresponds to the current section: */
 		var dropDown = $(this).parent().next();
+		
 		/* Closing all other drop down sections, except the current one */
 		/*$('.dropdown').not(dropDown).slideUp('slow');*/
 		dropDown.slideToggle('slow');
