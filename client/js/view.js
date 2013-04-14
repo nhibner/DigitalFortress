@@ -38,14 +38,14 @@ Template.view.events({
 	'click .session-nav-link': function(event) {
 		var id = event.target.id;
 		DF.setViewSessionId(id);
-	}
-<<<<<<< HEAD
-});
-=======
+	},
+
 	// Colorful Accordion
 	'click li.button a': function(event){
+
 		/* Finding the drop down list that corresponds to the current section: */
 		var dropDown = $(this).parent().next();
+		
 		/* Closing all other drop down sections, except the current one */
 		/*$('.dropdown').not(dropDown).slideUp('slow');*/
 		dropDown.slideToggle('slow');
@@ -54,4 +54,3 @@ Template.view.events({
 		event.preventDefault();
 	}
 });
->>>>>>> view-screen
