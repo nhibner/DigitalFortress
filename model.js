@@ -2,11 +2,63 @@
 // Loaded on both the client and the server
 
 ///////////////////////////////////////////////////////////////////////////////
+// UserData
+
+// Collection to store the user's data
+
+UserData = new Meteor.Collection('userData');
+
+UserData.allow({
+
+	insert: function (userId, doc) {
+    	// the user must be logged in, and the document must be owned by the user
+    	return (userId && userId == doc.uid);
+  	},
+
+  	update: function (userId, doc, fields, modifier) {
+    	// can only change your own documents
+    	return  userId == doc.uid;
+    },
+
+    remove: function (userId, doc) {
+    	// can only remove your own documents
+    	return doc.owner === userId;
+	}
+});
+
+///////////////////////////////////////////////////////////////////////////////
 // Captures
 
-Captures = new CollectionFS('captures', { autopublish: false });
+// Collection to store information about the user's captures
+
+Captures = new Meteor.Collection('captures');
 
 Captures.allow({
+
+	insert: function (userId, doc) {
+    	// the user must be logged in, and the document must be owned by the user
+    	return (userId && userId == doc.uid);
+  	},
+
+  	update: function (userId, doc, fields, modifier) {
+    	// can only change your own documents
+    	return doc.owner === userId;
+    },
+
+    remove: function (userId, doc) {
+    	// can only remove your own documents
+    	return doc.owner === userId;
+	}
+});
+
+///////////////////////////////////////////////////////////////////////////////
+// CapturesFS
+
+// Collection that actually holds the files in question
+
+CapturesFS = new CollectionFS('capturesFS', { autopublish: false });
+
+CapturesFS.allow({
 
 	insert: function(userId, myFile) {
 		return false;
@@ -23,7 +75,7 @@ Captures.allow({
 	}
 });
 
-Captures.fileHandlers({
+CapturesFS.fileHandlers({
 	default: function(options) {
 
 		/*
@@ -31,44 +83,20 @@ Captures.fileHandlers({
 		 * be saved on filesytem, can be modified.
 		*/
 
-		// Update the capture in the user's record
-		var userId = options.fileRecord.metadata.userId;
-		var sessionId = options.fileRecord.metadata.sessionId;
-		var fileId = options.fileRecord._id;
+		// Collect variables to use when updating capture
+		var filename = options.fileRecord.filename;
+		var dest = options.destination().fileData.url;
 
-		// Get the user
-		var user = Meteor.users.findOne({
-				_id: userId
-			}
-		);
-
-		// Get the session
-		var session = null;
-		for(var i = 0; i < user.profile.sessions.length; i++) {
-			if(user.profile.sessions[i].sessionId = sessionId) {
-				session = user.profile.sessions[i];
-				break;
-			}
-		}
-
-		// Update the source variable in the session capture
-		for(var i = 0; i < session.captures.length; i++) {
-			if(session.captures[i].fileId == fileId) {
-				session.captures[i].source = options.destination().fileData.url;
-				break;
-			}
-		}
-
-		// Replace the session with the updated one
-		Meteor.users.update({
-			_id: userId,
-			'profile.sessions.sessionId': sessionId,
+		// Update the capture source for the user
+		Captures.update({
+			'filename': filename
 		}, {
 			$set: {
-				'profile.sessions.$': session
+				'source': dest
 			}
 		});
-		console.log('Saved source URL for image with file id: ' + fileId);
+
+		console.log('Saved file to: ' + dest);
 
 		// Return the blob and fileRecord to save
 		return { blob: options.blob, fileRecord: options.fileRecord }; //if no blob then save result in fileHandle (added createdAt)

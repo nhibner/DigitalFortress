@@ -14,9 +14,6 @@ class @DFSession
 		@sessionId = Random.id()
 		@startTime = null
 		@endTime = null
-		@captures = []
-		@locations = []
-		@audio = null
 
 	start: =>
 		@dfstreamer = new DFStreamer
@@ -59,8 +56,20 @@ class @DFSession
 			# Get the image buffer
 			dataURL = @dfstreamer.currCanvas.toDataURL 'image/png'
 
+			# Create the capture
+			capture = {
+				'uid': Meteor.userId()
+				'sessionId': @sessionId
+				'date': new Date()
+				'fileId': ''
+				'filename': Random.id() + '.png'
+				'source': AppConfig.LOADING_SPINNER
+			}
+
+			# Save the capture
+			Captures.insert(capture)
+
 			# Save the image
-			Meteor.call 'saveImage', @getProperties(), dataURL, (new Date()), (error, result) =>
-				@captures.push(result)
+			Meteor.call 'saveImage', dataURL, capture
 
 			Meteor.setTimeout (-> DF.setSaveImages true), (AppConfig.IMAGE_DELAY * 1000)

@@ -12,23 +12,28 @@ Accounts.config({
 // Configure account permissions
 Accounts.ui.config({
 	requestPermissions: {
-	    google: ['https://www.googleapis.com/auth/userinfo.profile',
-	    		 'https://www.googleapis.com/auth/userinfo.email']
+		google: ['https://www.googleapis.com/auth/userinfo.profile',
+				 'https://www.googleapis.com/auth/userinfo.email']
 	}
 });
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // App Lifecycle
 
 // Control login flow
 Meteor.autorun(function () {
-  if (Meteor.userId()) {
-    // on login
-    Meteor.Router.to('/record');
-  } else {
-    // on logout
-    Meteor.Router.to('/');
-  }
+	if (Meteor.userId()) {
+
+		// Render 'record' template
+		Meteor.Router.to('/record');
+	
+	} else {
+
+		// on logout
+		Meteor.Router.to('/');
+	}
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,5 +42,8 @@ Meteor.autorun(function () {
 // Subscribe to 'users' collection
 Meteor.subscribe('users');
 
-// Subscribe to 'myCaptures' collection
-Meteor.subscribe('myCaptures');
+// Subscribe to 'userData' collection
+Meteor.subscribe('userData');
+
+// Subscribe to 'captures' collection
+Meteor.subscribe('captures');

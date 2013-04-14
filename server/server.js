@@ -8,10 +8,27 @@ Meteor.startup(function() {
 	// Make sure user account login services are configured
 	Accounts.loginServiceConfiguration.remove();
 	Accounts.loginServiceConfiguration.insert({
-		"service": "google",
-		"clientId": "721224193710.apps.googleusercontent.com",
-		"secret": "0i3OqYQBKCbbZkUJZMsvhQ2T"
+		"service": 'google',
+		"clientId": '721224193710.apps.googleusercontent.com',
+		"secret": '0i3OqYQBKCbbZkUJZMsvhQ2T'
 	});
+});
+
+// Configure new users
+Accounts.onCreateUser(function(options, user) {
+
+	// Create userData entry for user
+	UserData.insert({
+		uid: user._id,
+		sessions: [],
+		settings: {}
+	});
+
+	// Return default user object
+	if(options.profile) {
+		user.profile = options.profile;
+	}
+	return user;
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -19,16 +36,18 @@ Meteor.startup(function() {
 
 // Allow the client access to their Google login data
 // Needed for Google integration
-Meteor.publish("users", function () {
-  	return Meteor.users.find({_id: this.userId}, 
-  		{fields: {'services': 1, 'profile': 1}});
+Meteor.publish('users', function () {
+	return Meteor.users.find({_id: this.userId});
 });
 
-// Only publish captures for the current session (TODO)
-Meteor.publish('myCaptures', function() {
-	if(this.userId) {
-		return Captures.find({owner: this.userId })
-	}
+Meteor.publish('userData', function() {
+	return UserData.find({uid: this.userId});
+})
+
+Meteor.publish('captures', function() {
+	return Captures.find({
+		uid: this.userId
+	});
 })
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,34 +71,38 @@ Meteor.methods({
 
 	// Function to create session data structure on server
 	createSessionOnServer: function(sessionProps) {
-		// Insert session properties into the database for the user
+
+		// Set the start time of the session using the server's time
 		sessionProps.startTime = new Date();
-		Meteor.users.update({_id: this.userId}, 
-			{$addToSet: {"profile.sessions": sessionProps}});
+
+		// Insert the session properties into the database for the user
+		UserData.update({
+			uid: this.userId
+		}, {
+			$addToSet: {
+				"sessions": sessionProps
+			}
+		});
+
+		// Return the new session properties
 		return sessionProps;
 	},
 
 	endSessionOnServer: function(sessionProps) {
 		// Set the endTimeDate for the session on the server
-		Meteor.users.update({
-				_id: this.userId,
-				'profile.sessions.sessionId': sessionProps.sessionId
+		UserData.update({
+				uid: this.userId,
+				'sessions.sessionId': sessionProps.sessionId
 			}, {
 				$set: {
-					'profile.sessions.$.endTime': new Date()
+					'sessions.$.endTime': new Date()
 				}	
 			}
 		);
 	},
 
-	// Function to add a capture for a user
-	addCapture: function(capture) {
-		Meteor.users.update({_id: this.userId},
-			{$addToSet: {"profile.captures": capture}});
-	},
-
 	// Function to save an image file
-  	saveImage: function(sessionProps, dataURL, dateTime) {
+  	saveImage: function(dataURL, capture) {
 
   		// Convert dataURL to buffer
 		var regex = /^data:.+\/(.+);base64,(.*)$/;
@@ -89,33 +112,22 @@ Meteor.methods({
 		// Create metadata
 		var options = {
 			metadata: {
-				'userId': Meteor.user()._id,
-				'sessionId': sessionProps.sessionId
+				'userId': this.userId,
+				'sessionId': capture.sessionId
 			}
 		};
 
   		// Save the image
-  		var filename = Random.id() + '.png';
-  		var fileId = Captures.storeBuffer(filename, buffer, 'base64', options);
+  		var fileId = CapturesFS.storeBuffer(capture.filename, buffer, 'base64', options);
 
-  		// Create the capture
-  		var capture = {
-  			'date': dateTime,
-  			'fileId': fileId,
-  			'filename': filename,
-  			'source': '' // empty until server updates it
-  		};
-
-  		// Store photo info in the proper session
-		Meteor.users.update({
-				_id: this.userId,
-				'profile.sessions.sessionId': sessionProps.sessionId
-			}, {
-				$addToSet: {
-					'profile.sessions.$.captures': capture
-				}	
-			}
-		);
+  		// Update the capture fileId for the user
+  		Captures.update({
+  			'filename': capture.filename
+  		}, {
+  			$set: {
+  				'fileId': fileId
+  			}
+  		});
 
 		return capture;
 	}

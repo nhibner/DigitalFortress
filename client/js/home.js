@@ -3,26 +3,32 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Home Template - Helpers
 
-Template.record.helpers({
+Template.home.helpers({
 
 	isBrowserCompatible: function() {
-
-		// Check for WebRTC compatibility (not in Modernizr)
-		var hasWebRTC = navigator.getUserMedia ||
-						navigator.mozGetUserMedia ||
-						navigator.webkitGetUserMedia ||
-						navigator.msGetUserMedia;
-
-		// Modify the return statement to use Modernizr to also check
-		// for geolocation API access and HTML 5 video/audio compatibility
-		return hasWebRTC;
+		return DF.isCompatible();
 	}
 });
 
 ///////////////////////////////////////////////////////////////////////////////
 // Home Template - Events
 
-Template.record.events({
+Template.home.events({
 
 	// Nothing yet
 });
+
+///////////////////////////////////////////////////////////////////////////////
+// Home Template - Lifecycle
+
+Template.home.rendered = function() {
+	
+	// If the browser is not compatible, show modal in middle of the page
+	if(!DF.isCompatible()) {
+		$('#incompatibilityModal').modal({
+			'backdrop': true,
+			'keyboard': true,
+			'show': true
+		});
+	}
+}

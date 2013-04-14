@@ -9,8 +9,13 @@ class @DF
 	# Variable to store the current Digital Fortress session
 	@currentSession = null
 
-	### Helper Methods to Manage Sessions ###
+	# Convenience method to get the user's data
+	this.userData = ->
+		id = Meteor.userId() || this.userId
+		if not id then null
+		else UserData.findOne({uid: id});
 
+	# Helper Methods for handling sessions
 	this.startSession = ->
 		if @currentSession?
 			@currentSession.stopSession
@@ -21,6 +26,14 @@ class @DF
 		if @currentSession?
 			@currentSession.stop()
 			@currentSession = null
+
+	# Determine if the user's browser is compatible with Digital Fortress
+	this.isCompatible = ->
+		hasWebRTC = navigator.getUserMedia ||
+					navigator.mozGetUserMedia ||
+					navigator.webkitGetUserMedia ||
+					navigator.msGetUserMedia
+		return hasWebRTC && Modernizr.audio && Modernizr.video && Modernizr.geolocation
 
 	######################################################################
 

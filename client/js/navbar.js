@@ -65,7 +65,7 @@ Template.navbar.events({
 		if(tab.ROUTE == 'view') {
 
 			// Get the sessions
-			var sessions = Meteor.user().profile.sessions;
+			var sessions = DF.userData().sessions;
 
 			// Get the latest session
 			var session = _.max(sessions, function(session) {
@@ -73,7 +73,9 @@ Template.navbar.events({
 			});
 
 			// Set the view session id
-			DF.setViewSessionId(session.sessionId);
+			if(session) {
+				DF.setViewSessionId(session.sessionId);
+			}
 		}
 	}
 });
