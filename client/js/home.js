@@ -15,7 +15,21 @@ Template.home.helpers({
 
 Template.home.events({
 
-	// Nothing yet
+	'click #privacyLink': function(event) {
+		$('#privacyModal').modal({
+			'backdrop': true,
+			'keyboard': true,
+			'show': true
+		})
+	},
+
+	'click #aboutLink': function(event) {
+		$('#aboutModal').modal({
+			'backdrop': true,
+			'keyboard': true,
+			'show': true
+		})
+	}
 });
 
 ///////////////////////////////////////////////////////////////////////////////
