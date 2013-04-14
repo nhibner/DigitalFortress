@@ -121,10 +121,13 @@ Meteor.methods({
   		var fileId = CapturesFS.storeBuffer(capture.filename, buffer, 'base64', options);
 
   		// Update the capture fileId for the user
-  		var capture = Captures.findOne({'filename': capture.filename});
-		Captures.remove({'filename': capture.filename});
-		capture.fileId = fileId;
-		Captures.insert(capture);
+  		Captures.update({
+  			'filename': capture.filename
+  		}, {
+  			$set: {
+  				'fileId': fileId
+  			}
+  		});
 
 		return capture;
 	}

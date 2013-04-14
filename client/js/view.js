@@ -22,7 +22,9 @@ Template.view.helpers({
 
 	sessions: function() {
 		// Get the user's sessions
-		return UserData.findOne().sessions;
+		return UserData.findOne({
+			uid: Meteor.userId()
+		}).sessions;
 	}
 });
 

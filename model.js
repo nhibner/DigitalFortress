@@ -88,10 +88,13 @@ CapturesFS.fileHandlers({
 		var dest = options.destination().fileData.url;
 
 		// Update the capture source for the user
-		var capture = Captures.findOne({'filename': filename});
-		Captures.remove({'filename': filename});
-		capture.source = dest;
-		Captures.insert(capture);
+		Captures.update({
+			'filename': filename
+		}, {
+			$set: {
+				'source': dest
+			}
+		});
 
 		console.log('Saved file to: ' + dest);
 
