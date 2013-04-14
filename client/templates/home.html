@@ -2,15 +2,25 @@
 
 	<div id="home-background">
 
+		{{! Horizontal stripe across home page}}
 		<div id="box-centered">
-
 			<div class="hero-unit transparent-gray-background large-padding">
+
 				<h1>Digital Fortress</h1>
 				<h4>The Poor Man's Security Solution</h4>
-				{{loginButtons}}
-			</div>
 
+				{{#if isBrowserCompatible}}
+					{{loginButtons}}
+				{{else}}
+
+					<p style="color:red">Your browser is incompatible. Please download <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> for the best experience.</p>
+
+				{{/if}}
+
+			</div>
 		</div>
+
+		{{> incompatibilityModal}}
 
 	</div>
 

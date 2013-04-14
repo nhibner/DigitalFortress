@@ -15,8 +15,7 @@ class @DF
 		if not id then null
 		else UserData.findOne({uid: id});
 
-	### Helper Methods to Manage Sessions ###
-
+	# Helper Methods for handling sessions
 	this.startSession = ->
 		if @currentSession?
 			@currentSession.stopSession
@@ -27,6 +26,14 @@ class @DF
 		if @currentSession?
 			@currentSession.stop()
 			@currentSession = null
+
+	# Determine if the user's browser is compatible with Digital Fortress
+	this.isCompatible = ->
+		hasWebRTC = navigator.getUserMedia ||
+					navigator.mozGetUserMedia ||
+					navigator.webkitGetUserMedia ||
+					navigator.msGetUserMedia
+		return hasWebRTC && Modernizr.audio && Modernizr.video && Modernizr.geolocation
 
 	######################################################################
 
