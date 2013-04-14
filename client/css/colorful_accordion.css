@@ -16,13 +16,24 @@ li{
 	text-align:left;
 }
 
-li.ca_menu{
-	/* The main list elements */
+li.ca-menu{
 	padding:5px 0;
 	width:100%;
+	background: white;
+
+	/* Setup border around accordion */
+	border: 2px solid black;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+
+	/* Setup shadow */
+	-moz-box-shadow: 6px 6px 5px #CCC;
+	-webkit-box-shadow: 6px 6px 5px #CCC;
+	box-shadow: 6px 6px 5px #CCC;
 }
 
-li.ca_button a{
+li.ca-button a{
 	/* The section titles */
 	display:block;
 	font-family:BPreplay,Arial,Helvetica,sans-serif;
@@ -34,12 +45,12 @@ li.ca_button a{
 	width:480px;
 }
 
-li.ca_button a:hover{
+li.ca-button a:hover{
 	/* Removing the inherited underline from the titles */
 	text-decoration:none;
 }
 
-li.ca_button a span{
+li.ca-button a span{
 	/* This span acts as the right part of the section's background */
 	height:44px;
 	position:absolute;
@@ -49,22 +60,18 @@ li.ca_button a span{
 	display:block;
 }
 
-/* Setting up different styles for each section color */
-li.ca_button a.ca_blue{background:url(img/blueL.png) repeat-x top left; color:#074384;}
-li.ca_button a.ca_blue span{ background:url(img/blueL.png) repeat-x top right;}
-
 /* The hover effects */
-li.ca_button a:hover{ background-position:bottom left;}
-li.ca_button a:hover span{ background-position:bottom right;}
+li.ca-button a:hover{ background-position:bottom left;}
+li.ca-button a:hover span{ background-position:bottom right;}
 
-.ca_dropdown{
+.ca-dropdown{
 	/* The expandable lists */
 	display:none;
 	padding-top:5px;
 	width:100%;
 }
 
-.ca_dropdown li{
+.ca-dropdown li{
 	/* Each element in the expandable list */
 	background-color:#373128;
 	border:1px solid #40392C;
