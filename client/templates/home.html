@@ -7,10 +7,14 @@
 			<div class="hero-unit transparent-gray-background large-padding">
 
 				<h1>Digital Fortress</h1>
-				<h4>The Poor Man's Security Solution</h4>
+				<h4>The Poor Man's Security Solution (<a id="aboutLink" href="">More Info</a>)</h4>
+				<div class="spacer25"></div>
 
 				{{#if isBrowserCompatible}}
+
 					{{loginButtons}}
+					<h5>By signing in, you agree with our <a id="privacyLink" href="">Privacy Policy</a>.</h5>
+
 				{{else}}
 
 					<p style="color:red">Your browser is incompatible. Please download <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> for the best experience.</p>
@@ -21,6 +25,8 @@
 		</div>
 
 		{{> incompatibilityModal}}
+		{{> privacyModal}}
+		{{> aboutModal}}
 
 	</div>
 
