@@ -9,6 +9,12 @@ class @DF
 	# Variable to store the current Digital Fortress session
 	@currentSession = null
 
+	# Convenience method to get the user's data
+	this.userData = ->
+		id = Meteor.userId() || this.userId
+		if not id then null
+		else UserData.findOne({uid: id});
+
 	### Helper Methods to Manage Sessions ###
 
 	this.startSession = ->

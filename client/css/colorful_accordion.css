@@ -1,0 +1,74 @@
+/* Colorful Accordion */
+ul{
+	margin:0;
+	padding:0;
+}
+
+ul.container{
+	/* The topmost UL */
+	width:480px;
+	margin:0 auto;
+	padding:50px;
+}
+
+li{
+	list-style:none;
+	text-align:left;
+}
+
+li.ca_menu{
+	/* The main list elements */
+	padding:5px 0;
+	width:100%;
+}
+
+li.ca_button a{
+	/* The section titles */
+	display:block;
+	font-family:BPreplay,Arial,Helvetica,sans-serif;
+	font-size:21px;
+	height:34px;
+	overflow:hidden;
+	padding:10px 20px 0;
+	position:relative;
+	width:480px;
+}
+
+li.ca_button a:hover{
+	/* Removing the inherited underline from the titles */
+	text-decoration:none;
+}
+
+li.ca_button a span{
+	/* This span acts as the right part of the section's background */
+	height:44px;
+	position:absolute;
+	right:0;
+	top:0;
+	width:4px;
+	display:block;
+}
+
+/* Setting up different styles for each section color */
+li.ca_button a.ca_blue{background:url(img/blueL.png) repeat-x top left; color:#074384;}
+li.ca_button a.ca_blue span{ background:url(img/blueL.png) repeat-x top right;}
+
+/* The hover effects */
+li.ca_button a:hover{ background-position:bottom left;}
+li.ca_button a:hover span{ background-position:bottom right;}
+
+.ca_dropdown{
+	/* The expandable lists */
+	display:none;
+	padding-top:5px;
+	width:100%;
+}
+
+.ca_dropdown li{
+	/* Each element in the expandable list */
+	background-color:#373128;
+	border:1px solid #40392C;
+	color:#CCCCCC;
+	margin:5px 0;
+	padding:4px 18px;
+}
