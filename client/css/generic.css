@@ -1,0 +1,23 @@
+/* Contains CSS for generic classes that can be used throughout Digital Fortress */
+
+.dark-border {
+	border: 2px solid black;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.shadow {
+	-moz-box-shadow: 6px 6px 5px #777;
+	-webkit-box-shadow: 6px 6px 5px #777;
+	box-shadow: 6px 6px 5px #777;
+}
+
+.gray-bottom-border {
+	border-bottom: 2px solid lightgray;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}

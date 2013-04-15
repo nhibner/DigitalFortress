@@ -1,0 +1,63 @@
+/* Colorful Accordion */
+ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+ul.container{
+	/* The topmost UL */
+	width: 480px;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+li{
+	list-style: none;
+	text-align: left;
+}
+
+li.ca-menu{
+	padding: 0px;
+	margin-bottom: 20px;
+	background: white;	
+}
+
+li.ca-button {
+	margin: 15px 0px;
+	padding: 0px;
+}
+
+li.ca-button a{
+	/* The section titles */
+	display: block;
+	font-family: BPreplay, Arial, Helvetica, sans-serif;
+	font-size: 21px;
+	overflow: hidden;
+	padding: 0px 20px;
+	position: relative;
+	width: 50%;
+}
+
+li.ca-button a:hover{
+	/* Removing the inherited underline from the titles */
+	text-decoration: none;
+}
+
+/* The hover effects */
+li.ca-button a:hover { background-position: bottom left;}
+li.ca-button a:hover span { background-position: bottom right;}
+
+.ca-dropdown{
+	/* The expandable lists */
+	display: none;
+	padding: 5px 15px 0px;
+}
+
+.ca-dropdown li{
+	/* Each element in the expandable list */
+	background-color: #373128;
+	border: 1px solid #40392C;
+	color: #CCCCCC;
+	margin: 5px 0px;
+	padding: 4px 18px;
+}
