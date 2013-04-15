@@ -46,6 +46,12 @@ class @DFStreamer
 			###
 			DF.requestingCamPermission true
 
+			$('#webCamPermissionModal').modal({
+				'backdrop': 'static'
+				'keyboard': false
+				'show': true
+			})
+
 			# Start the cam, requesting permission if necessary
 			navigator.getUserMedia {
 				video: true
@@ -68,6 +74,7 @@ class @DFStreamer
 	onStartSuccess: (stream) =>
 
 		# Permission received and now going to load screen
+		$('#webCamPermissionModal').modal('hide')
 		DF.requestingCamPermission false
 		DF.setLoadingSession true
 		DF.currentSession.onCamPermissionReceived()
@@ -122,6 +129,7 @@ class @DFStreamer
 		@video.src = videoSource
 
 	onStartError: =>
+		$('#webCamPermissionModal').modal('hide')
 		DF.requestingCamPermission false
 		alert 'There has been a problem retrieving the streams - did you allow access?'
 
