@@ -47,10 +47,14 @@ li.ca-button a:hover{
 li.ca-button a:hover { background-position: bottom left;}
 li.ca-button a:hover span { background-position: bottom right;}
 
-.ca-dropdown{
+.ca-dropdown {
 	/* The expandable lists */
 	display: none;
 	padding: 5px 15px 0px;
+}
+
+.ca-visible-dropdown {
+	padding: 0px 15px 0px;
 }
 
 .ca-dropdown li{
