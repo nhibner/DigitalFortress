@@ -19,14 +19,18 @@ li{
 li.ca-menu{
 	padding:5px 0;
 	width:100%;
-	background: white;
+	background: white;	
+}
 
+.dark-border {
 	/* Setup border around accordion */
 	border: 2px solid black;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
+}
 
+.dark-shadow {
 	/* Setup shadow */
 	-moz-box-shadow: 6px 6px 5px #CCC;
 	-webkit-box-shadow: 6px 6px 5px #CCC;
