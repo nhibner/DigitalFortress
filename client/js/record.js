@@ -28,7 +28,7 @@ Template.record.helpers({
 Template.record.events({
 
 	'click #btn-start-recording': function(event) {
-		if(!($('#btn-start-recording').hasClass('disabled')) { 
+		if(!($('#btn-start-recording').hasClass('disabled'))) { 
 			DF.startSession();
 		}
 	},
@@ -50,25 +50,23 @@ Template.record.events({
 		$('#input-text').toggle();
 		event.stopPropagation();
 	},
-	'change #Pass': function(event){
-		var password = $('#Pass').val();
-		var confirm = $('#Conf').val();
+
+	'keyup #input-password': function(event){
+		var password = $('#input-password').val();
+		var confirm = $('#input-confirm').val();
 		if(password == confirm && password != undefined){
 			$("#btn-start-recording").removeClass("disabled");
-		}
-		else
-		{
+		} else {
 			$("#btn-start-recording").addClass("disabled");
 		}
 	},
-	'change #Conf': function(event){
-		var password = $('#Pass').val();
-		var confirm = $('#Conf').val();
+
+	'keyup #input-confirm': function(event){
+		var password = $('#input-password').val();
+		var confirm = $('#input-confirm').val();
 		if(password == confirm && password != undefined){
 			$("#btn-start-recording").removeClass("disabled");
-		}
-		else
-		{
+		} else {
 			$("#btn-start-recording").addClass("disabled");
 		}
 	}
