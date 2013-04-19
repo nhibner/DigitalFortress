@@ -22,9 +22,29 @@ Template.view.helpers({
 
 	sessions: function() {
 		// Get the user's sessions
-		return UserData.findOne({
+		var sessions = UserData.findOne({
 			uid: Meteor.userId()
 		}).sessions;
+		$.each(sessions, function(index, session) {
+			session['title'] = moment(session.startTime).format('MM/DD/YYYY - h:mm a');
+			session['isCurrent'] = (session.sessionId == DF.viewSessionId()) ? "bold" : "";
+			sessions[index] = session;
+		});
+		return sessions;
+	},
+
+	currentSessionTitle: function() {
+
+		// Get the current session
+		var sessions = UserData.findOne({
+			uid: Meteor.userId()
+		}).sessions;
+		var session = _.find(sessions, function(session) {
+			return session.sessionId == DF.viewSessionId();
+		});
+
+		// Return the formatted datetime string
+		return moment(session.startTime).format('MM/DD/YYYY - h:mm a');
 	}
 });
 

@@ -36,3 +36,11 @@
 .botmargin30 {
 	margin-bottom: 30px !important;
 }
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
