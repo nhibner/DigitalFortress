@@ -7,6 +7,10 @@
 	padding: 10px 15px 20px;
 }
 
+.sessionTitle{
+	padding-left: 20px;
+}
+
 .row-fluid
 .span2 {
 	width: 17.5% !important;
@@ -15,7 +19,7 @@
 .capturePics{}
 
 .capturePics img{
-	width: 382px !important;
+	width: 48.25% !important;
 	height: auto;
 	padding: 10px 5px;
 }

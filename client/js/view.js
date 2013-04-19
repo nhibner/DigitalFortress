@@ -44,7 +44,7 @@ Template.view.helpers({
 		});
 
 		// Return the formatted datetime string
-		return momment(session.startTime).format('MM/DD/YYYY - h:mm a');
+		return moment(session.startTime).format('MM/DD/YYYY - h:mm a');
 	}
 });
 
