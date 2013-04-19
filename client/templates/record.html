@@ -16,13 +16,6 @@
 		<div class="row-fluid">
 			<div class="span6 offset3" style="text-align: center">
 				<form>
-					<!-- 
-						TODO: Recording settings HTML goes here. 
-
-						Notes - See layout plans for the appearance and necessary features.
-							  - May want to create sub-templates to organize HTML better
-							    (see how the recording-in-progress template is setup above).
-					-->
 
 					<!-- Motion Detection Alerts -->
 					<li class="ca-menu dark-border shadow center">
@@ -31,18 +24,17 @@
 							<li class="ca-visible-dropdown record-header">
 									<label>
 								    	<input value="Email" type="checkbox"/>
-								    	<i class="icon-envelope tastbox"></i>
-								    	<b class = "tustbox" >Email Alerts</b>
+								    	<i class="icon-envelope recordbox"></i>
+								    	<b class="recordbox">Email Alerts</b>
 								    	<br>
-								    	<input type="text" class = "testbox" name="emailbox" value="jatin@isadumbass.com" >
+								    	<input type="text" class="recordbox" name="emailbox" value="">
 								    </label>
-									<br>
 									<label>
 								    	<input value="Text" type="checkbox"/>
-								    	<i class="icon-list-alt tastbox"></i>
-								    	<b class = "tustbox" >Text Alerts   </b>
+								    	<i class="icon-list-alt recordbox"></i>
+								    	<b class="recordbox">Text Alerts</b>
 								    	<br>
-								    	<input type="text" class = "testbox" name="phonenumber" value="###-###-####"  >
+								    	<input type="text" class="recordbox" name="phonenumber" value="">
 									</label>
 									<br>
 							</li>
@@ -55,31 +47,30 @@
 							<li class="ca-button gray-bottom-border"><a href="#">What to Record</a></li>
 							<li class="ca-visible-dropdown record-header">
 								<label>
-								<input value="Geolocation" type="checkbox" />
-								<i class="icon-globe tastbox"></i>
-								<b class = "tustbox" >Geolocation</b>
+									<input value="Geolocation" type="checkbox" />
+									<i class="icon-globe recordbox"></i>
+									<b class="recordbox">Geolocation</b>
 								</label>
 								<br>
 								<label>
-							    <input value="Audio" type="checkbox" />
-							    <i class="icon-volume-up tastbox"></i>
-							    <b class = "tustbox" >Audio</b>
+								    <input value="Audio" type="checkbox" />
+								    <i class="icon-volume-up recordbox"></i>
+								    <b class="recordbox" >Audio</b>
 								</label>
 								<br>
 							</li>
 						</ul>
 				 	</li>
 
-					<!-- URL to Share Session 
+					<!-- URL to Share Session -->
 					<li class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">URL to Share Session</a></li>
 							<li class="ca-visible-dropdown">
-								<p>Stuff 3</p>
+								<input type="text" class="recordbox" />
 							</li>
 						</ul>
 				 	</li>
-					-->
 
 					<!-- Set Session Password -->
 					<li class="ca-menu dark-border shadow center">
