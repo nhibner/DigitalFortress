@@ -23,21 +23,25 @@
 							<li class="ca-button gray-bottom-border"><a href="#">Motion Detection Alerts</a></li>
 							<li class="ca-visible-dropdown record-header">
 
-									<label>
-								    	<input value="Email" type="checkbox"/>
+									<label id="label-email">
+								    	<input id="checkbox-email" value="Email" type="checkbox"/>
 								    	<i class="icon-envelope recordbox"></i>
 								    	<b class="recordbox">Email Alerts</b>
 								    	<br />
-								    	<input type="text" class="recordbox" name="emailbox" value="">
 								    </label>
+								    <input type="text" id="input-email" class="recordbox" name="emailbox" value="{{userEmail}}" style="display: none">
+								    
+								    <br />
 
-									<label>
-								    	<input value="Text" type="checkbox"/>
+									<label id="label-text">
+								    	<input id="checkbox-text" value="Text" type="checkbox"/>
 								    	<i class="icon-list-alt recordbox"></i>
 								    	<b class="recordbox">Text Alerts</b>
 								    	<br />
-								    	<input type="text" class="recordbox botmargin20" name="phonenumber" value="">
-									</label>
+								    </label>
+								    <input type="text" id="input-text" class="recordbox botmargin20" name="phonenumber" placeholder="123-456-7890" style="display: none">
+									
+									<br />
 
 							</li>
 						</ul>
