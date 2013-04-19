@@ -10,56 +10,93 @@
 
 		{{> navbar}}
 
+		<!-- <head>
+			<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		</head> -->
 		<div class="row-fluid">
 			<div class="span6 offset3" style="text-align: center">
+				<form>
+					<!-- 
+						TODO: Recording settings HTML goes here. 
 
-				<!-- 
-					TODO: Recording settings HTML goes here. 
+						Notes - See layout plans for the appearance and necessary features.
+							  - May want to create sub-templates to organize HTML better
+							    (see how the recording-in-progress template is setup above).
+					-->
 
-					Notes - See layout plans for the appearance and necessary features.
-						  - May want to create sub-templates to organize HTML better
-						    (see how the recording-in-progress template is setup above).
-				-->
+					<!-- Motion Detection Alerts -->
+					<li class="ca-menu dark-border shadow center">
+						<ul>
+							<li class="ca-button gray-bottom-border"><a href="#">Motion Detection Alerts</a></li>
+							<li class="ca-visible-dropdown record-header">
+								<div>
+									<label>
+								    	<input value="Email" type="checkbox"/>
+								    	<i class="icon-envelope"></i>
+								    	Email Alerts
+								    	<input type="text" name="emailbox" value="jatin@isadumbass.com" >
+								    </label>
+									<div class="span10">
+									<label>
+									
+								    	<input value="Text" type="checkbox" />
+								    	<i class="icon-list-alt"></i>
+								    	Text alerts
+								    	<input type="text" name="phonenumber" value="###-###-####" >
+									</label>
+									<br>
+								</div>
+							</li>
+						</ul>
+				 	</li>
 
-				<!-- Motion Detection Alerts -->
-				<li class="ca-menu dark-border shadow center">
-					<ul>
-						<li class="ca-button gray-bottom-border"><a href="#">Motion Detection Alerts</a></li>
-						<li class="ca-visible-dropdown">
-							<p>Stuff 1</p>
-						</li>
-					</ul>
-			 	</li>
+					<!-- What to Record -->
+					<li class="ca-menu dark-border shadow center">
+						<ul>
+							<li class="ca-button gray-bottom-border"><a href="#">What to Record</a></li>
+							<li class="ca-visible-dropdown record-header">
+								<label>
+								<input value="Geolocation" type="checkbox" />
+								<i class="icon-globe"></i>
+								Geolocation
+								</label>
+								<br>
+								<label>
+							    <input value="Audio" type="checkbox" />
+							    <i class="icon-volume-up"></i>
+							    Audio
+								</label>
+								<br>
+							</li>
+						</ul>
+				 	</li>
 
-				<!-- What to Record -->
-				<li class="ca-menu dark-border shadow center">
-					<ul>
-						<li class="ca-button gray-bottom-border"><a href="#">What to Record</a></li>
-						<li class="ca-visible-dropdown">
-							<p>Stuff 2</p>
-						</li>
-					</ul>
-			 	</li>
+					<!-- URL to Share Session 
+					<li class="ca-menu dark-border shadow center">
+						<ul>
+							<li class="ca-button gray-bottom-border"><a href="#">URL to Share Session</a></li>
+							<li class="ca-visible-dropdown">
+								<p>Stuff 3</p>
+							</li>
+						</ul>
+				 	</li>
+					-->
 
-				<!-- URL to Share Session -->
-				<li class="ca-menu dark-border shadow center">
-					<ul>
-						<li class="ca-button gray-bottom-border"><a href="#">URL to Share Session</a></li>
-						<li class="ca-visible-dropdown">
-							<p>Stuff 3</p>
-						</li>
-					</ul>
-			 	</li>
-
-				<!-- Set Session Password -->
-				<li class="ca-menu red-border shadow center">
-					<ul>
-						<li class="ca-button gray-bottom-border"><a href="#">Set Session Password</a></li>
-						<li class="ca-visible-dropdown">
-							<p>Stuff 4</p>
-						</li>
-					</ul>
-			 	</li>
+					<!-- Set Session Password -->
+					<li class="ca-menu dark-border shadow center">
+						<ul>
+							<li class="ca-button gray-bottom-border"><a href="#">Set Session Password</a></li>
+							<li class="ca-visible-dropdown record-header">
+								<label>Password:</label>
+							    <input name="Password" type="password" />
+								<br>
+								<label>Confirm Password:</label>
+							    <input name="Confirm" type="password" />
+								<br>
+							</li>
+						</ul>
+				 	</li>
+				 </form>
 
 				<div id="btn-start-recording" class="btn btn-danger">Start Recording</div>
 
