@@ -57,6 +57,12 @@ class @DF
 	this.viewSessionId = -> Session.get 'viewSessionId'
 	this.setViewSessionId = (value) -> Session.set 'viewSessionId', value
 
+	this.sessionPassword = -> Session.get 'sessionPassword'
+	this.setSessionPassword = (value) -> Session.set 'sessionPassword', value
+
+	this.sessionEmail = -> Session.get 'sessionEmail'
+	this.setSessionEmail = (value) -> Session.set 'sessionEmail', value
+
 	this.clearSettings = ->
 		# Default values
 		@setEmailEnabled false

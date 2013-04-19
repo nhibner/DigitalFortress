@@ -7,6 +7,10 @@ Template.record.helpers({
 
 	isRecording: function() {
 		return DF.isRecording();
+	},
+
+	shareURL: function() {
+		return 'http://digitalfortress.meteor.com/share/' + Random.id();
 	}
 });
 
@@ -15,11 +19,11 @@ Template.record.helpers({
 
 Template.record.events({
 
-	'click #btn-start-recording': function() {
+	'click #btn-start-recording': function(event) {
 		DF.startSession();
 	},
 
-	'click #btn-stop-recording': function() {
+	'click #btn-stop-recording': function(event) {
 		DF.endSession();
 	}
 });
