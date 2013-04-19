@@ -2,4 +2,22 @@
 	margin-left: 20px !important;
 }
 
+.sessionBox {
+	background: #FFF;
+	padding: 10px 15px 20px;
+}
+
+.row-fluid
+.span2 {
+	width: 17.5% !important;
+}
+
+.capturePics{}
+
+.capturePics img{
+	width: 382px !important;
+	height: auto;
+	padding: 10px 5px;
+}
+
 

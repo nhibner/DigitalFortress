@@ -22,9 +22,29 @@ Template.view.helpers({
 
 	sessions: function() {
 		// Get the user's sessions
-		return UserData.findOne({
+		var sessions = UserData.findOne({
 			uid: Meteor.userId()
 		}).sessions;
+		$.each(sessions, function(index, session) {
+			var splitSessionStartTime = session.startTime.toString().split("GMT");
+			var separateSessionStartTime = splitSessionStartTime[0].toString().split(" ");
+			var i = 0;
+			while (i < separateSessionStartTime.length-2)
+			{
+				if (session["title"] == undefined)
+				{			
+					session["title"] = separateSessionStartTime[i] + " ";
+				}
+				else
+				{
+					session["title"] += separateSessionStartTime[i] + " ";
+				}
+				i = i + 1;
+			}
+			session["title"] += "- " + separateSessionStartTime[i];
+			sessions[index] = session;
+		});
+		return sessions;
 	}
 });
 
