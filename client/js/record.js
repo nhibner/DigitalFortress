@@ -28,7 +28,9 @@ Template.record.helpers({
 Template.record.events({
 
 	'click #btn-start-recording': function(event) {
-		DF.startSession();
+		if(!($('#btn-start-recording').hasClass('disabled')) { 
+			DF.startSession();
+		}
 	},
 
 	'click #btn-stop-recording': function(event) {
