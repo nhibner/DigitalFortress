@@ -6,6 +6,7 @@
 input.recordbox {
 	position:relative;
 	top: 7px;
+	width: 95% !important;
 }
 
 i.recordbox {
