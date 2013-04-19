@@ -1,5 +1,5 @@
 .row-fluid [class*="span"]:first-child {
-	margin-left: 20px !important;
+	padding-left: 20px !important;
 }
 
 .sessionBox {
