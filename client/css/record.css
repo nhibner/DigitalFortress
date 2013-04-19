@@ -1,0 +1,16 @@
+.record-header {
+	font-family: BPreplay, Arial, Helvetica, sans-serif;
+	font-size: 21px !important;
+}
+input.testbox {
+	position:relative;
+	top: 7px;
+}
+i.tastbox {
+	position:relative;
+	top: 3px;
+}
+b.tustbox{
+	position:relative;
+	top: 3px;
+}
