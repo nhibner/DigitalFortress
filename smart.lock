@@ -2,7 +2,7 @@
   "meteor": {
     "git": "https://github.com/meteor/meteor.git",
     "branch": "master",
-    "commit": "0ffea1c4c308ed24906984f99b13b8fca5a0956c"
+    "commit": "1dfc7171f237a029cca74cbf25024acbf6ed5b75"
   },
   "dependencies": {
     "basePackages": {
@@ -10,7 +10,8 @@
       "collectionFS-nhibner": {
         "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
         "branch": "devel-buffer-encoding"
-      }
+      },
+      "router": {}
     },
     "packages": {
       "modernizr-meteor": {
@@ -22,6 +23,16 @@
         "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
         "branch": "devel-buffer-encoding",
         "commit": "2768d4353b681d19a5859d29b581208a22cbb817"
+      },
+      "router": {
+        "git": "https://github.com/tmeasday/meteor-router.git",
+        "tag": "v0.5.1",
+        "commit": "32e377c7703bb119acccc859fc7296882903cbe7"
+      },
+      "page-js-ie-support": {
+        "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
+        "tag": "v1.3.5",
+        "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
       }
     }
   }
