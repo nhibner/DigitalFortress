@@ -1,0 +1,20 @@
+.record-header {
+	font-family: BPreplay, Arial, Helvetica, sans-serif;
+	font-size: 21px !important;
+}
+
+input.recordbox {
+	position:relative;
+	top: 7px;
+	width: 95% !important;
+}
+
+i.recordbox {
+	position:relative;
+	top: 3px;
+}
+
+b.recordbox {
+	position:relative;
+	top: 3px;
+}

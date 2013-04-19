@@ -26,22 +26,8 @@ Template.view.helpers({
 			uid: Meteor.userId()
 		}).sessions;
 		$.each(sessions, function(index, session) {
-			var splitSessionStartTime = session.startTime.toString().split("GMT");
-			var separateSessionStartTime = splitSessionStartTime[0].toString().split(" ");
-			var i = 0;
-			while (i < separateSessionStartTime.length-2)
-			{
-				if (session["title"] == undefined)
-				{			
-					session["title"] = separateSessionStartTime[i] + " ";
-				}
-				else
-				{
-					session["title"] += separateSessionStartTime[i] + " ";
-				}
-				i = i + 1;
-			}
-			session["title"] += "- " + separateSessionStartTime[i];
+			session['title'] = moment(session.startTime).format('MM/DD/YYYY - h:mm a');
+			session['isCurrent'] = (session.sessionId == DF.viewSessionId()) ? "bold" : "";
 			sessions[index] = session;
 		});
 		return sessions;

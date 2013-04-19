@@ -5,6 +5,7 @@
       "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
       "branch": "devel-buffer-encoding"
     },
-    "router": {}
+    "router": {},
+    "moment": {}
   }
 }

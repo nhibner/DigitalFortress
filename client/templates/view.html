@@ -9,9 +9,9 @@
 		<div class="row-fluid">
 
 			<div id="session-nav" class="span2 sessionBox dark-border shadow center">
-				<h4>Sessions</h4>
+				<h4 class="underline">Sessions</h4>
 				{{#each sessions}}
-					<a id="{{sessionId}}" class="session-nav-link" href="">{{title}}</a>
+					<p><a id="{{sessionId}}" class="session-nav-link {{isCurrent}}" href="" style="width: 100%">{{title}}</a></p>
 				{{/each}}
 			</div>
 			<!-- Details about the current selected session. -->

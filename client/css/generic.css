@@ -28,3 +28,11 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
