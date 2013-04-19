@@ -47,5 +47,27 @@ Template.record.events({
 		checkbox.checked = !checkbox.checked;
 		$('#input-text').toggle();
 		event.stopPropagation();
+	},
+	'change #Pass': function(event){
+		var password = $('#Pass').val();
+		var confirm = $('#Conf').val();
+		if(password == confirm && password != undefined){
+			$("#btn-start-recording").removeClass("disabled");
+		}
+		else
+		{
+			$("#btn-start-recording").addClass("disabled");
+		}
+	},
+	'change #Conf': function(event){
+		var password = $('#Pass').val();
+		var confirm = $('#Conf').val();
+		if(password == confirm && password != undefined){
+			$("#btn-start-recording").removeClass("disabled");
+		}
+		else
+		{
+			$("#btn-start-recording").addClass("disabled");
+		}
 	}
 });
