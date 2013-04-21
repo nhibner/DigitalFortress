@@ -23,7 +23,7 @@
       "collectionFS-nhibner": {
         "git": "https://github.com/nhibner/Meteor-CollectionFS.git",
         "branch": "devel-buffer-encoding",
-        "commit": "2768d4353b681d19a5859d29b581208a22cbb817"
+        "commit": "38988a1648939e6ea14655aad341220bb7234ff4"
       },
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",

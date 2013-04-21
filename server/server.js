@@ -111,6 +111,7 @@ Meteor.methods({
 
 		// Create metadata
 		var options = {
+			encoding: 'base64',
 			metadata: {
 				'userId': this.userId,
 				'sessionId': capture.sessionId
@@ -118,7 +119,7 @@ Meteor.methods({
 		};
 
   		// Save the image
-  		var fileId = CapturesFS.storeBuffer(capture.filename, buffer, 'base64', options);
+  		var fileId = CapturesFS.storeBuffer(capture.filename, buffer, options);
 
   		// Update the capture fileId for the user
   		Captures.update({
