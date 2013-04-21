@@ -12,7 +12,8 @@
         "branch": "devel-buffer-encoding"
       },
       "router": {},
-      "moment": {}
+      "moment": {},
+      "tour": {}
     },
     "packages": {
       "modernizr-meteor": {
@@ -34,6 +35,11 @@
         "git": "https://github.com/possibilities/meteor-moment.git",
         "tag": "v1.7.0",
         "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      },
+      "tour": {
+        "git": "https://github.com/kidovate/meteor-bootstrap-tour.git",
+        "tag": "v0.3.2",
+        "commit": "5f1d9df8c425f919238096b97013c86cb74f72c0"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

@@ -6,6 +6,7 @@
       "branch": "devel-buffer-encoding"
     },
     "router": {},
-    "moment": {}
+    "moment": {},
+    "tour": {}
   }
 }
