@@ -18,7 +18,7 @@
 				<form>
 
 					<!-- Motion Detection Alerts -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-alerts" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">Motion Detection Alerts</a></li>
 							<li class="ca-visible-dropdown record-header">
@@ -48,7 +48,7 @@
 				 	</li>
 
 					<!-- What to Record -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-what-to-record" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">What to Record</a></li>
 							<li class="ca-visible-dropdown record-header">
@@ -72,7 +72,7 @@
 				 	</li>
 
 					<!-- URL to Share Session -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-share-session" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">URL to Share Session</a></li>
 							<li class="ca-visible-dropdown">
@@ -84,7 +84,7 @@
 				 	</li>
 
 					<!-- Set Session Password -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-password" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">Set Session Password</a></li>
 							<li class="ca-visible-dropdown record-header">
@@ -100,7 +100,9 @@
 				 	</li>
 				 </form>
 
-				<a id="btn-start-recording" class="btn btn-danger disabled">Start Recording</a>
+				<span id="tour-btn-record" style="padding: 10px; display: inline-block">
+					<a id="btn-start-recording" class="btn btn-danger disabled">Start Recording</a>
+				</span>
 
 			</div>
 		</div>

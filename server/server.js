@@ -21,13 +21,17 @@ Accounts.onCreateUser(function(options, user) {
 	UserData.insert({
 		uid: user._id,
 		sessions: [],
-		settings: {}
+		settings: {
+			firstTimeRecord: true,
+			firstTimeView: true
+		}
 	});
 
 	// Return default user object
 	if(options.profile) {
 		user.profile = options.profile;
 	}
+
 	return user;
 });
 
@@ -88,6 +92,7 @@ Meteor.methods({
 		return sessionProps;
 	},
 
+	// Function to end session data structure on server
 	endSessionOnServer: function(sessionProps) {
 		// Set the endTimeDate for the session on the server
 		UserData.update({
@@ -96,6 +101,30 @@ Meteor.methods({
 			}, {
 				$set: {
 					'sessions.$.endTime': new Date()
+				}	
+			}
+		);
+	},
+
+	// Function to set user firstTimeRecord boolean
+	setFirstTimeRecord: function(val) {
+		UserData.update({
+				uid: this.userId
+			}, {
+				$set: {
+					'settings.firstTimeRecord': val
+				}	
+			}
+		);
+	},
+
+	// Function to set user firstTimeRecord boolean
+	setFirstTimeView: function(val) {
+		UserData.update({
+				uid: this.userId
+			}, {
+				$set: {
+					'settings.firstTimeView': val
 				}	
 			}
 		);
