@@ -28,7 +28,13 @@ Template.record.helpers({
 Template.record.events({
 
 	'click #btn-start-recording': function(event) {
-		if(!($('#btn-start-recording').hasClass('disabled'))) { 
+		var textnumber = $('#input-text').val();
+		var textcheck = document.getElementById('checkbox-text').checked;
+		if(textnumber == "" && textcheck){
+			//console.log("test");
+			alert("You want to recieve text alerts, but have given no number to recieve them!")
+		}
+		else if(!($('#btn-start-recording').hasClass('disabled'))) { 
 			DF.startSession();
 		}
 	},
