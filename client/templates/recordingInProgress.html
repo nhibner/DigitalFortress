@@ -10,13 +10,17 @@
 	</div>
 
 	<!-- These elements are required by DFStreamer -->
-	<div id="recording-panel" style="{{isRecordingPanelVisible}}">
-		{{#constant}}
-		<video id="cam" width="640" height="480" autoplay></video>
-		<canvas id="resultCanvas"></canvas>
-
-		<div id="btn-stop-recording" class="btn btn-danger">Stop Recording</div>
-		{{/constant}}
+	<div id="recording-panel" style="">
+		
+		<h2>You are being recorded!</h2>
+    <video id="cam" width="640" height="480" autoplay></video>
+    <canvas id="resultCanvas"></canvas>
+    
+    <h4>To stop recording, enter password</h4>
+    <label>Password:</label>
+      <input name="Password2" id="password-input" type="password" class="recordbox botmargin20"/>
+    <div id="btn-stop-recording" class="btn btn-danger disabled">Stop Recording</div>
+		
 	</div>
 
 </template>
