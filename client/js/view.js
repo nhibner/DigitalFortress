@@ -75,3 +75,80 @@ Template.view.events({
 		event.preventDefault();
 	}
 });
+
+///////////////////////////////////////////////////////////////////////////////
+// View Template - Lifecycle
+
+Template.view.created = function() {
+	// Get user data
+	var userData = DF.userData();
+	if(!userData || !userData.settings.firstTimeView || userData.sessions.length == 0) return;
+
+	// User is new, give them a tour
+	UserData.update({
+		_id: DF.userData()._id
+	}, {
+		$set: {
+			'settings.firstTimeView': false
+		}
+	});
+
+	isFirstTimeView = true;
+}
+
+Template.view.rendered = function() {
+	if(isFirstTimeView) {
+		isFirstTimeView = false;
+		tourShown = true;
+		createViewTour();
+	}
+}
+
+function createViewTour() {
+	// Create the tour
+	var tour = new Tour({
+		name: Random.id(),
+	    labels: {
+	        next: "Next »",
+	        prev: "« Prev",
+	        end: "End tour"
+	    },
+	    keyboard: true,
+	    useLocalStorage: true,
+	});
+
+	// Add the steps
+	tour.addStep({
+		element: '#session-nav ul',
+		title: 'Your Sessions',
+		backdrop: true,
+		content: 'Any sessions you record will be listed here. Since you just recorded your first session, it is the only one listed.'
+	});
+
+	tour.addStep({
+		element: '#tour-location ul',
+		title: 'Location Tracking',
+		backdrop: true,
+		placement: 'left',
+		content: "Track your device on a map if it moves while it is recording a session."
+	});
+
+	tour.addStep({
+		element: '#tour-audio ul',
+		title: 'Audio Playback',
+		backdrop: true,
+		placement: 'left',
+		content: 'Listen to the audio from the session.'
+	});
+
+	tour.addStep({
+		element: '#tour-pictures ul',
+		title: 'Pictures',
+		backdrop: true,
+		placement: 'left',
+		content: 'View pictures taken by the device while recording a session. Images are taken whenever motion is detected.'
+	});
+
+	// Start the tour
+	tour.start(true);
+}

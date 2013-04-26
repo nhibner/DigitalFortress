@@ -106,30 +106,6 @@ Meteor.methods({
 		);
 	},
 
-	// Function to set user firstTimeRecord boolean
-	setFirstTimeRecord: function(val) {
-		UserData.update({
-				uid: this.userId
-			}, {
-				$set: {
-					'settings.firstTimeRecord': val
-				}	
-			}
-		);
-	},
-
-	// Function to set user firstTimeRecord boolean
-	setFirstTimeView: function(val) {
-		UserData.update({
-				uid: this.userId
-			}, {
-				$set: {
-					'settings.firstTimeView': val
-				}	
-			}
-		);
-	},
-
 	// Function to save an image file
   	saveImage: function(dataURL, capture) {
 

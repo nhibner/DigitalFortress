@@ -82,11 +82,17 @@ Template.record.rendered = function() {
 	if(!userData || !userData.settings.firstTimeRecord) return;
 
 	// User is new, give them a tour
-	Meteor.call('setFirstTimeRecord', false);
+	UserData.update({
+		_id: DF.userData()._id
+	}, {
+		$set: {
+			'settings.firstTimeRecord': false
+		}
+	});
 
 	// Create the tour
 	var tour = new Tour({
-		name: 'Record Tour',
+		name: Random.id(),
 	    labels: {
 	        next: "Next »",
 	        prev: "« Prev",

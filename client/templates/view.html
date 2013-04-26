@@ -9,49 +9,59 @@
 		<div class="row-fluid">
 
 			<div id="session-nav" class="span2 sessionBox dark-border shadow center">
-				<h4 class="underline">Sessions</h4>
-				{{#each sessions}}
-					<p><a id="{{sessionId}}" class="session-nav-link {{isCurrent}}" href="" style="width: 100%">{{title}}</a></p>
-				{{/each}}
+				<ul>
+					<h4 class="underline">Sessions</h4>
+					{{#each sessions}}
+						<p><a id="{{sessionId}}" class="session-nav-link {{isCurrent}}" href="" style="width: 100%">{{title}}</a></p>
+					{{/each}}
+				</ul>
 			</div>
+
 			<!-- Details about the current selected session. -->
-			<div id="session-details" class="span8">
+			<div id="session-details" class="span9">
 				<div id="session-info">
+
 					<div class="sessionTitle">					
 						<h4>{{currentSessionTitle}}</h4>
 					</div>
+
+					{{#constant}}
 					<!-- Locataion Accordion -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-location" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">Location</a></li>
 							<li class="ca-dropdown">
-								<ul>
-									<li>Urbana, Illinois</li>
+								<div>
+									<p>Urbana, Illinois</p>
 									<img src="images/df_map.jpg"/>
-
-								</ul>
+								</div>
 							</li>
 						</ul>
 					 </li>
 
 					<!-- Audio Accordion -->
-					<li class="ca-menu dark-border shadow center">
+					<li id="tour-audio" class="ca-menu dark-border shadow center">
 						<ul>
 							<li class="ca-button gray-bottom-border"><a href="#">Audio</a></li>
 							<li class="ca-dropdown">
-								<ul>
-									<img src="images/df_audio.jpg"/> 									</ul>
+								<img src="images/df_audio.jpg"/>
 							</li>
 						</ul>
 					 </li>
+					 {{/constant}}
 
 				</div>
 
-				<div id="captures" class="capturePics">
-					{{#each captures}}
-						<img src="{{source}}" />
-					{{/each}}
-				</div>
+				<li id="tour-pictures" class="ca-menu dark-border shadow center">
+					<ul>
+						<li class="ca-button gray-bottom-border"><a href="#">Pictures</a></li>
+						<li class="ca-picture-dropdown">
+							{{#each captures}}
+								<img src="{{source}}" />
+							{{/each}}
+						</li>
+					</ul>
+				 </li>
 				
 			</div>
 
