@@ -11,9 +11,13 @@
 			<div id="session-nav" class="span2 sessionBox dark-border shadow center">
 				<ul>
 					<h4 class="underline">Sessions</h4>
-					{{#each sessions}}
-						<p><a id="{{sessionId}}" class="session-nav-link {{isCurrent}}" href="" style="width: 100%">{{title}}</a></p>
-					{{/each}}
+
+					{{#isolate}}
+						{{#each sessions}}
+							<p><a id="{{sessionId}}" class="session-nav-link {{isCurrent}}" href="" style="width: 100%">{{title}}</a></p>
+						{{/each}}
+					{{/isolate}}
+					
 				</ul>
 			</div>
 
@@ -54,11 +58,19 @@
 
 				<li id="tour-pictures" class="ca-menu dark-border shadow center">
 					<ul>
-						<li class="ca-button gray-bottom-border"><a href="#">Pictures</a></li>
+
+						{{#constant}}
+							<li class="ca-button gray-bottom-border"><a href="#">Pictures</a></li>
+						{{/constant}}
+
 						<li class="ca-picture-dropdown">
-							{{#each captures}}
-								<img src="{{source}}" />
-							{{/each}}
+
+							{{#isolate}}
+								{{#each captures}}
+									<img src="{{source}}" />
+								{{/each}}
+							{{/isolate}}
+
 						</li>
 					</ul>
 				 </li>

@@ -142,7 +142,7 @@ function createViewTour() {
 	});
 
 	tour.addStep({
-		element: '#tour-pictures ul',
+		element: '#tour-pictures ul .ca-button',
 		title: 'Pictures',
 		backdrop: true,
 		placement: 'left',
