@@ -2,10 +2,25 @@
 
 	<div id="loading" style="{{isLoadingVisible}}">
 		{{#constant}}
-			<p>Time Until Recording Starts...</p>
-			<div class="progress">	
-	  				<div id="sessionLoader" class="bar" style="width: 0%"></div>
-			</div>
+			<div class="row-fluid">
+				<div class="span4 offset4" style="text-align: center; margin-top: 10%">
+					<form>
+
+						<!-- Loading Box -->
+						<li class="ca-menu dark-border shadow center">
+							<ul>
+								<li class="ca-button gray-bottom-border"><a href="#">Time Until Recording Starts...</a></li>
+								<li class="ca-visible-dropdown record-header">
+									<div class="progress">	
+							  				<div id="sessionLoader" class="bar" style="width: 0%"></div>
+									</div>	
+								</li>
+							</ul>
+					 	</li>
+
+					 </form>
+				</div>
+			</div>			
 		{{/constant}}
 	</div>
 
