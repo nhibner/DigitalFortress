@@ -26,6 +26,7 @@ class @DF
 		if @currentSession?
 			@currentSession.stop()
 			@currentSession = null
+		Navbar.click 'view'
 
 	# Determine if the user's browser is compatible with Digital Fortress
 	this.isCompatible = ->

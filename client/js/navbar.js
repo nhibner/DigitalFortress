@@ -3,21 +3,47 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Navbar Template - Constants
 
-// Pages in navigation bar in the app
-NavbarTabs = [
-	{
-		ROUTE: 'record',
-		DISPLAY: 'Record'
-	},
-	{
-		ROUTE: 'view',
-		DISPLAY: 'View'
-	},
-	{
-		ROUTE: 'help',
-		DISPLAY: 'Help'
+Navbar = {
+
+	Tabs: [
+		{
+			ROUTE: 'record',
+			DISPLAY: 'Record'
+		},
+		{
+			ROUTE: 'view',
+			DISPLAY: 'View'
+		},
+		{
+			ROUTE: 'help',
+			DISPLAY: 'Help'
+		}
+	],
+
+	click: function(route) {
+
+		// Navigate route
+		Meteor.Router.to('/' + route);
+
+		// If 'view' was selected, set the current session to the latest one.
+		if(route == 'view') {
+
+			// Get the sessions
+			var sessions = DF.userData().sessions;
+
+			// Get the latest session
+			var session = _.max(sessions, function(session) {
+				return session.startTime;
+			});
+
+			// Set the view session id
+			if(session) {
+				DF.setViewSessionId(session.sessionId);
+			}
+		}
 	}
-];
+
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 // Navbar Template - Helpers
@@ -29,7 +55,7 @@ Template.navbar.helpers({
 	},
 
 	navbarTabs: function() {
-		var tabs = NavbarTabs;
+		var tabs = Navbar.Tabs;
 		_.each(tabs, function(tab) {
 			if(tab.ROUTE == Meteor.Router.page()) {
 				tab.isActive = 'active';
@@ -52,30 +78,13 @@ Template.navbar.events({
 		var display = event.target.text;
 
 		// Get the corresponding tab object
-		var tab = _.find(NavbarTabs, function(tab) {
+		var tab = _.find(Navbar.Tabs, function(tab) {
 			return tab.DISPLAY == display;
 		});
 
-		// If a tab is found, navigate to it
+		// If tab is found, click it
 		if(tab) {
-			Meteor.Router.to('/' + tab.ROUTE);
-		}
-
-		// If 'view' was selected, set the current session to the latest one.
-		if(tab.ROUTE == 'view') {
-
-			// Get the sessions
-			var sessions = DF.userData().sessions;
-
-			// Get the latest session
-			var session = _.max(sessions, function(session) {
-				return session.startTime;
-			});
-
-			// Set the view session id
-			if(session) {
-				DF.setViewSessionId(session.sessionId);
-			}
+			Navbar.click(tab.ROUTE);
 		}
 	}
 });
