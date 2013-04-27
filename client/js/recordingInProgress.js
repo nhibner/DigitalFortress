@@ -28,7 +28,19 @@ Template.recordingInProgress.helpers({
 Template.recordingInProgress.events({
 
 	'click #btn-stop-recording': function() {
-		DF.endSession();
-		Session.set('isRecording', false);
+		// If button is not disabled, end the session
+		if(!($('#btn-stop-recording').hasClass('disabled'))) { 
+			DF.endSession();
+			Session.set('isRecording', false);
+		}
+	},
+
+	'keyup #session-password-input': function(event){
+		var password = $('#session-password-input').val();
+		if(password == DF.sessionPassword()){
+			$("#btn-stop-recording").removeClass("disabled");
+		} else {
+			$("#btn-stop-recording").addClass("disabled");
+		}
 	}
 });

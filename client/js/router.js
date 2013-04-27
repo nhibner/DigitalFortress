@@ -11,7 +11,7 @@ Meteor.Router.add({
 	'/home': 'home',
 	
 	'/:tab': function(tab) {
-		var routes = _.pluck(NavbarTabs, 'ROUTE');
+		var routes = _.pluck(Navbar.Tabs, 'ROUTE');
 		if(_.contains(routes, tab)) {
 			return tab;
 		} else {

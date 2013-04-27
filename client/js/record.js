@@ -38,13 +38,10 @@ Template.record.events({
 		}
 		
 		// Form data is valid, start session if the button is not disabled
-		if(!($('#btn-start-recording').hasClass('disabled'))) { 
+		if(!($('#btn-start-recording').hasClass('disabled'))) {
+			DF.setSessionPassword($('#input-password').val());
 			DF.startSession();
 		}
-	},
-
-	'click #btn-stop-recording': function(event) {
-		DF.endSession();
 	},
 
 	'click #checkbox-email': function(event) {
