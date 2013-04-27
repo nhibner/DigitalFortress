@@ -28,13 +28,17 @@ Template.record.helpers({
 Template.record.events({
 
 	'click #btn-start-recording': function(event) {
+
+		// Check if text alerts is enabled without proper phone number entered
 		var textnumber = $('#input-text').val();
-		var textcheck = document.getElementById('checkbox-text').checked;
-		if(textnumber == "" && textcheck){
-			//console.log("test");
-			alert("You want to recieve text alerts, but have given no number to recieve them!")
+		var textcheck = $('#checkbox-text').is(':checked');
+		if(textnumber == "" && textcheck) {
+			alert("You want to recieve text alerts, but have given no number to recieve them! Please enter a number or uncheck the text alerts checkbox");
+			return;
 		}
-		else if(!($('#btn-start-recording').hasClass('disabled'))) { 
+		
+		// Form data is valid, start session if the button is not disabled
+		if(!($('#btn-start-recording').hasClass('disabled'))) { 
 			DF.startSession();
 		}
 	},
@@ -44,15 +48,11 @@ Template.record.events({
 	},
 
 	'click #checkbox-email': function(event) {
-		var checkbox = $('#checkbox-email');
-		checkbox.checked = !checkbox.checked;
 		$('#input-email').toggle();
 		event.stopPropagation();
 	},
 
 	'click #checkbox-text': function(event) {
-		var checkbox = $('#checkbox-text');
-		checkbox.checked = !checkbox.checked;
 		$('#input-text').toggle();
 		event.stopPropagation();
 	},
