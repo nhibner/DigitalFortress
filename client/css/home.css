@@ -1,6 +1,10 @@
 /*
  * Digital Fortress CSS Styles
 */
+#box-centered {
+	padding-top: 10%;
+}
+
 #home-bar-header {
 	display: table-cell;
 	text-align: left;
