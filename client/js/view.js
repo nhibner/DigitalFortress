@@ -30,7 +30,8 @@ Template.view.helpers({
 			session['isCurrent'] = (session.sessionId == DF.viewSessionId()) ? "bold" : "";
 			sessions[index] = session;
 		});
-		return sessions;
+
+		return sessions.reverse();
 	},
 
 	currentSessionTitle: function() {
