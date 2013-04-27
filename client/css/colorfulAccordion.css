@@ -53,6 +53,12 @@ li.ca-button a:hover span { background-position: bottom right;}
 	padding: 5px 15px 0px;
 }
 
+.ca-picture-dropdown {
+	padding: 5px 15px 0px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
 .ca-visible-dropdown {
 	padding: 0px 15px 0px;
 }
