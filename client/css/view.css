@@ -9,6 +9,8 @@
 
 .sessionTitle{
 	padding-left: 20px;
+	color: white;
+	text-decoration: underline;
 }
 
 .row-fluid
