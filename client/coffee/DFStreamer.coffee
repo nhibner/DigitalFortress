@@ -120,7 +120,9 @@ class @DFStreamer
 
 		# Setup the video source
 		videoSource = null
-		if window.webkitURL
+		if window.URL
+			videoSource = window.URL.createObjectURL stream
+		else if window.webkitURL
 			videoSource = window.webkitURL.createObjectURL stream
 		else
 			videoSource = @stream
