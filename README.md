@@ -1,22 +1,22 @@
 Digital Fortress
 ================
 
-Live Website:  http://digitalfortress.meteor.com
+Live Website:  (http://digitalfortress.meteor.com)
 
-About
------
+Overview
+-----------
 
 Digital Fortress is a Meteor-based website that allows users to use their computer's webcam and other sensory inputs as a security device. Users can have their computer take pictures when motion is detected, record audio, and track its own location. This information is stored on the site so that the user may access it later through a different computer (useful if the user's computer is not available).
 
-Implementation Overview
------------------------
+Implementation
+--------------
 
 At its core, Digital Fortress is powered by Meteor (http://meteor.com/), itself built on top of Node.js. Meteor provides us with simple Google sign-in and real-time page updates (i.e. images load when ready without refreshing the page). To accomplish video input and processing, we utilize WebRTC, a cutting-edge protocol for telecommunication on the Internet without the traditional plugins (such as Flash). The majority of the site consists of JavaScript; however, a few server-side classes are written in CoffeeScript for greater readability. Also noteworthy, the HTML files use Meteor's HTML templating system for additional flexibility when it comes to laying out the site's design. Finally, we opted to stick with pure CSS for styling instead of using a preprocessor (i.e. LESS, Sass, Stylus, etc.).
 
 One notable implementation decision was the choice to utilize purely HTML 5. Most importantly, we are using WebRTC for video input and processing, which is only supported in a select few web browsers (Google Chrome and Mozilla Firefox). In making this decision, we are limiting the potential audience of our site. However, we noticed that other browsers plan to add WebRTC capability soon. As a result, we expect the number of users with a Digital Fortress compatible web rowser to increase greatly in the coming months. Note that we designed the site to work for any browser that has a few specific HTML 5 features using Modernizr, an open-source feature detection library. We do not depend on user agent strings for browser detection.
 
-Features Implemented
---------------------
+Current Features
+----------------
 
 - Recording pictures
 - Session password
@@ -31,8 +31,8 @@ Features Implemented
 - Display spinning icon for images until fully loaded
 - Site tutorial for new users
 
-Features Not Yet Implemented
-----------------------------
+Feature Wish List
+-----------------
 
 Digital Fortress was designed with the following additional features in mind. However, due to minimal time and excessive complexity, our team decided to focus on the existing user interface and features rather than additional functionality outside the core user experience. Note that some of the following features have placeholders in the current code for future implementation.
 
@@ -83,8 +83,18 @@ In the terminal, run these commands:
 
 Once this is done, visit http://localhost:3000 (assuming default port) to view the site.
 
-Credits
--------
+Contributors
+------------
+* nhibner
+* hzeera
+* shogun21
+* bcguy390
+* iyer6
+* ajain15
+* jatinpandey
+
+Open-Source
+-----------
 
 Digital Fortress would not have been possible without open-source libraries and frameworks. The following is a list of open-source projects utilized in Digital Fortress:
 
