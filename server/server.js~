@@ -3,6 +3,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Server Lifecycle and Routing
 
+Meteor.startup(function() {
+
+	// Make sure user account login services are configured
+	Accounts.loginServiceConfiguration.remove();
+	Accounts.loginServiceConfiguration.insert({
+		"service": 'google',
+		"clientId": '721224193710.apps.googleusercontent.com',
+		"secret": '0i3OqYQBKCbbZkUJZMsvhQ2T'
+	});
+});
+
 // Configure new users
 Accounts.onCreateUser(function(options, user) {
 
